@@ -5,6 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "~/utils/trpc";
 import toast from "react-hot-toast";
 import { useUserInfo } from "~/hooks/useUserInfo";
+import { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [{ title: "login account | remix-t3-stack" }];
+};
 
 const PageLogin = () => {
   const { isLogin } = useUserInfo();

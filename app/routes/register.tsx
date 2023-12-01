@@ -4,6 +4,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "~/utils/trpc";
 import toast from "react-hot-toast";
+import { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [{ title: "register account | remix-t3-stack" }];
+};
 
 const PageRegister = () => {
   const { revalidate } = useRevalidator();

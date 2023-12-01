@@ -7,7 +7,7 @@ this is a todolist example use `remix-t3-stack`
 - remix
 - vite
 - trpc
-- tailwind
+- tailwindcss
 - typescript
 - prisma
 - jwt

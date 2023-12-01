@@ -1,17 +1,46 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData, useRevalidator } from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { useUserInfo } from "~/hooks/useUserInfo";
 import { trpc } from "~/utils/trpc";
 import clsx from "clsx";
 
+type IParams = { username: string };
+
+export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
+  const { username } = params as IParams;
+  const { myTaskList, isSelf, userInfo } = data || {};
+  if (!userInfo) {
+    return [{ title: "page need login | remix-t3-stack" }];
+  }
+  if (!isSelf) {
+    return [{ title: "no view permission | remix-t3-stack" }];
+  }
+
+  const unDoneTasksLength = myTaskList?.filter((e) => !e.done).length || 0;
+  return [
+    {
+      title: `(${unDoneTasksLength}) ${username}'s Tasks | remix-t3-stack`,
+    },
+  ];
+};
+
 export const loader = async (args: LoaderFunctionArgs) => {
-  const { username } = args.params as { username: string };
-  const { myTaskList } = await trpc(args.request).loader.getMyTaskList.query();
-  return { myTaskList, username };
+  const { username } = args.params as IParams;
+  const { userInfo } = await trpc(args.request).loader.getUserInfo.query();
+
+  const isSelf = !!userInfo && username === userInfo.username;
+
+  if (isSelf) {
+    const { myTaskList } = await trpc(
+      args.request,
+    ).loader.getMyTaskList.query();
+    return { myTaskList, isSelf, userInfo };
+  }
+
+  return { myTaskList: [], isSelf, userInfo };
 };
 
 const AddTaskForm = () => {
@@ -60,12 +89,10 @@ const AddTaskForm = () => {
 };
 
 const PageMyTasks = () => {
-  const { userInfo, isLogin } = useUserInfo();
   const { revalidate } = useRevalidator();
-  const { myTaskList, username } = useLoaderData<typeof loader>();
-  const isSelf = username === userInfo?.username;
+  const { myTaskList, isSelf, userInfo } = useLoaderData<typeof loader>();
 
-  if (!isLogin) {
+  if (!userInfo) {
     return (
       <>
         <div>this page need login</div>
@@ -124,11 +151,11 @@ const PageMyTasks = () => {
                         if (done) {
                           await trpc().action.unDoneTask.mutate({ taskId });
                           revalidate();
-                          toast.success("Task Done");
+                          toast.success("Task UnDone");
                         } else {
                           await trpc().action.doneTask.mutate({ taskId });
                           revalidate();
-                          toast.success("Task UnDone");
+                          toast.success("Task Done");
                         }
                       }}
                     />
