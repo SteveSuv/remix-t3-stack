@@ -1,6 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData, useRevalidator } from "@remix-run/react";
+import {
+  Link,
+  useLoaderData,
+  useParams,
+  useRevalidator,
+} from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
@@ -91,6 +96,7 @@ const AddTaskForm = () => {
 const PageMyTasks = () => {
   const { revalidate } = useRevalidator();
   const { myTaskList, isSelf, userInfo } = useLoaderData<typeof loader>();
+  const { username } = useParams() as IParams;
 
   if (!userInfo) {
     return (
@@ -106,7 +112,7 @@ const PageMyTasks = () => {
   if (!isSelf) {
     return (
       <>
-        <div>you can't view tasks of other users</div>
+        <div>you can't view tasks of other users ({username})</div>
         <Link to={`/tasks/${userInfo?.username}`}>
           <button className="btn">View my tasks</button>
         </Link>
@@ -133,14 +139,13 @@ const PageMyTasks = () => {
         {myTaskList.map(
           ({ id: taskId, content, done, createAt, updatedAt }, index) => {
             return (
-              <div>
+              <div key={taskId}>
                 {index > 0 && <div className="my-3 border-t" />}
                 <div
                   className={clsx(
                     "flex flex-col",
                     done && "line-through opacity-60",
                   )}
-                  key={taskId}
                 >
                   <div className="flex items-center gap-2">
                     <input

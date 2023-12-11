@@ -7,19 +7,19 @@ settings:
 dependencies:
   "@hookform/resolvers":
     specifier: ^3.3.2
-    version: 3.3.2(react-hook-form@7.48.2)
+    version: 3.3.2(react-hook-form@7.49.0)
   "@prisma/client":
-    specifier: 5.6.0
-    version: 5.6.0(prisma@5.6.0)
+    specifier: 5.7.0
+    version: 5.7.0(prisma@5.7.0)
   "@remix-run/node":
     specifier: ^2.3.1
-    version: 2.3.1(typescript@5.3.2)
+    version: 2.3.1(typescript@5.3.3)
   "@remix-run/react":
     specifier: ^2.3.1
-    version: 2.3.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2)
+    version: 2.3.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   "@remix-run/serve":
     specifier: ^2.3.1
-    version: 2.3.1(typescript@5.3.2)
+    version: 2.3.1(typescript@5.3.3)
   "@trpc/client":
     specifier: ^10.44.1
     version: 10.44.1(@trpc/server@10.44.1)
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-hook-form:
-    specifier: ^7.48.2
-    version: 7.48.2(react@18.2.0)
+    specifier: ^7.49.0
+    version: 7.49.0(react@18.2.0)
   react-hot-toast:
     specifier: ^2.4.1
     version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
@@ -60,7 +60,7 @@ dependencies:
 devDependencies:
   "@remix-run/dev":
     specifier: ^2.3.1
-    version: 2.3.1(@remix-run/serve@2.3.1)(typescript@5.3.2)(vite@5.0.5)
+    version: 2.3.1(@remix-run/serve@2.3.1)(typescript@5.3.3)(vite@5.0.7)
   "@types/cookie":
     specifier: ^0.6.0
     version: 0.6.0
@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^9.0.5
     version: 9.0.5
   "@types/react":
-    specifier: ^18.2.42
-    version: 18.2.42
+    specifier: ^18.2.43
+    version: 18.2.43
   "@types/react-dom":
     specifier: ^18.2.17
     version: 18.2.17
@@ -83,26 +83,26 @@ devDependencies:
     specifier: ^8.4.32
     version: 8.4.32
   prettier:
-    specifier: ^3.1.0
-    version: 3.1.0
+    specifier: ^3.1.1
+    version: 3.1.1
   prettier-plugin-tailwindcss:
     specifier: ^0.5.9
-    version: 0.5.9(prettier@3.1.0)
+    version: 0.5.9(prettier@3.1.1)
   prisma:
-    specifier: ^5.6.0
-    version: 5.6.0
+    specifier: ^5.7.0
+    version: 5.7.0
   tailwindcss:
     specifier: ^3.3.6
     version: 3.3.6
   typescript:
-    specifier: ^5.3.2
-    version: 5.3.2
+    specifier: ^5.3.3
+    version: 5.3.3
   vite:
-    specifier: ^5.0.5
-    version: 5.0.5
+    specifier: ^5.0.7
+    version: 5.0.7
   vite-tsconfig-paths:
-    specifier: ^4.2.1
-    version: 4.2.1(typescript@5.3.2)(vite@5.0.5)
+    specifier: ^4.2.2
+    version: 4.2.2(typescript@5.3.3)(vite@5.0.7)
 
 packages:
   /@alloc/quick-lru@5.2.0:
@@ -1366,7 +1366,7 @@ packages:
     engines: { node: ">=14" }
     dev: true
 
-  /@hookform/resolvers@3.3.2(react-hook-form@7.48.2):
+  /@hookform/resolvers@3.3.2(react-hook-form@7.49.0):
     resolution:
       {
         integrity: sha512-Tw+GGPnBp+5DOsSg4ek3LCPgkBOuOgS5DsDV7qsWNH9LZc433kgsWICjlsh2J9p04H2K66hsXPPb9qn9ILdUtA==,
@@ -1374,7 +1374,7 @@ packages:
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.48.2(react@18.2.0)
+      react-hook-form: 7.49.0(react@18.2.0)
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -1568,10 +1568,10 @@ packages:
     dev: true
     optional: true
 
-  /@prisma/client@5.6.0(prisma@5.6.0):
+  /@prisma/client@5.7.0(prisma@5.7.0):
     resolution:
       {
-        integrity: sha512-mUDefQFa1wWqk4+JhKPYq8BdVoFk9NFMBXUI8jAkBfQTtgx8WPx02U2HB/XbAz3GSUJpeJOKJQtNvaAIDs6sug==,
+        integrity: sha512-cZmglCrfNbYpzUtz7HscVHl38e9CrUs31nrVoGUK1nIPXGgt8hT4jj2s657UXcNdQ/jBUxDgGmHyu2Nyrq1txg==,
       }
     engines: { node: ">=16.13" }
     requiresBuild: true
@@ -1581,25 +1581,52 @@ packages:
       prisma:
         optional: true
     dependencies:
-      "@prisma/engines-version": 5.6.0-32.e95e739751f42d8ca026f6b910f5a2dc5adeaeee
-      prisma: 5.6.0
+      prisma: 5.7.0
     dev: false
 
-  /@prisma/engines-version@5.6.0-32.e95e739751f42d8ca026f6b910f5a2dc5adeaeee:
+  /@prisma/debug@5.7.0:
     resolution:
       {
-        integrity: sha512-UoFgbV1awGL/3wXuUK3GDaX2SolqczeeJ5b4FVec9tzeGbSWJboPSbT0psSrmgYAKiKnkOPFSLlH6+b+IyOwAw==,
+        integrity: sha512-tZ+MOjWlVvz1kOEhNYMa4QUGURY+kgOUBqLHYIV8jmCsMuvA1tWcn7qtIMLzYWCbDcQT4ZS8xDgK0R2gl6/0wA==,
       }
-    dev: false
 
-  /@prisma/engines@5.6.0:
+  /@prisma/engines-version@5.7.0-41.79fb5193cf0a8fdbef536e4b4a159cad677ab1b9:
     resolution:
       {
-        integrity: sha512-Mt2q+GNJpU2vFn6kif24oRSBQv1KOkYaterQsi0k2/lA+dLvhRX6Lm26gon6PYHwUM8/h8KRgXIUMU0PCLB6bw==,
+        integrity: sha512-V6tgRVi62jRwTm0Hglky3Scwjr/AKFBFtS+MdbsBr7UOuiu1TKLPc6xfPiyEN1+bYqjEtjxwGsHgahcJsd1rNg==,
+      }
+
+  /@prisma/engines@5.7.0:
+    resolution:
+      {
+        integrity: sha512-TkOMgMm60n5YgEKPn9erIvFX2/QuWnl3GBo6yTRyZKk5O5KQertXiNnrYgSLy0SpsKmhovEPQb+D4l0SzyE7XA==,
       }
     requiresBuild: true
+    dependencies:
+      "@prisma/debug": 5.7.0
+      "@prisma/engines-version": 5.7.0-41.79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
+      "@prisma/fetch-engine": 5.7.0
+      "@prisma/get-platform": 5.7.0
 
-  /@remix-run/dev@2.3.1(@remix-run/serve@2.3.1)(typescript@5.3.2)(vite@5.0.5):
+  /@prisma/fetch-engine@5.7.0:
+    resolution:
+      {
+        integrity: sha512-zIn/qmO+N/3FYe7/L9o+yZseIU8ivh4NdPKSkQRIHfg2QVTVMnbhGoTcecbxfVubeTp+DjcbjS0H9fCuM4W04w==,
+      }
+    dependencies:
+      "@prisma/debug": 5.7.0
+      "@prisma/engines-version": 5.7.0-41.79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
+      "@prisma/get-platform": 5.7.0
+
+  /@prisma/get-platform@5.7.0:
+    resolution:
+      {
+        integrity: sha512-ZeV/Op4bZsWXuw5Tg05WwRI8BlKiRFhsixPcAM+5BKYSiUZiMKIi713tfT3drBq8+T0E1arNZgYSA9QYcglWNA==,
+      }
+    dependencies:
+      "@prisma/debug": 5.7.0
+
+  /@remix-run/dev@2.3.1(@remix-run/serve@2.3.1)(typescript@5.3.3)(vite@5.0.7):
     resolution:
       {
         integrity: sha512-Qo6bbdDUHvg6+LiC+8paA40hWVRPBqYCoOse9hEZHRHNxY2r5JsF5RbXldx/70wtT1gJkp+k5z3MjVxkYUsqEw==,
@@ -1628,10 +1655,10 @@ packages:
       "@babel/types": 7.23.5
       "@mdx-js/mdx": 2.3.0
       "@npmcli/package-json": 4.0.1
-      "@remix-run/node": 2.3.1(typescript@5.3.2)
+      "@remix-run/node": 2.3.1(typescript@5.3.3)
       "@remix-run/router": 1.13.0
-      "@remix-run/serve": 2.3.1(typescript@5.3.2)
-      "@remix-run/server-runtime": 2.3.1(typescript@5.3.2)
+      "@remix-run/serve": 2.3.1(typescript@5.3.3)
+      "@remix-run/server-runtime": 2.3.1(typescript@5.3.3)
       "@types/mdx": 2.0.10
       "@vanilla-extract/integration": 6.2.4
       arg: 5.0.2
@@ -1673,9 +1700,9 @@ packages:
       set-cookie-parser: 2.6.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
-      typescript: 5.3.2
+      typescript: 5.3.3
       undici: 5.28.1
-      vite: 5.0.5
+      vite: 5.0.7
       ws: 7.5.9
     transitivePeerDependencies:
       - "@types/node"
@@ -1693,7 +1720,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@remix-run/express@2.3.1(express@4.18.2)(typescript@5.3.2):
+  /@remix-run/express@2.3.1(express@4.18.2)(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-6gh+3InqBWkWRmFQtyE25PRD5bCYKBBgE0DBtqcI165otBuLK/SQul003n/lu6EateenT1RuQZgLjaDGX5UlyA==,
@@ -1706,11 +1733,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      "@remix-run/node": 2.3.1(typescript@5.3.2)
+      "@remix-run/node": 2.3.1(typescript@5.3.3)
       express: 4.18.2
-      typescript: 5.3.2
+      typescript: 5.3.3
 
-  /@remix-run/node@2.3.1(typescript@5.3.2):
+  /@remix-run/node@2.3.1(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-dXoNrmLrPblUM8UjgPzq3YBLXEGzm3HwtIt0iob1SlgKx0I5ii40JG0IXHDTI9f+fN9f/Ufx7Cjp0MGcUVXWVw==,
@@ -1722,7 +1749,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      "@remix-run/server-runtime": 2.3.1(typescript@5.3.2)
+      "@remix-run/server-runtime": 2.3.1(typescript@5.3.3)
       "@remix-run/web-fetch": 4.4.1
       "@remix-run/web-file": 3.1.0
       "@remix-run/web-stream": 1.1.0
@@ -1730,9 +1757,9 @@ packages:
       cookie-signature: 1.2.1
       source-map-support: 0.5.21
       stream-slice: 0.1.2
-      typescript: 5.3.2
+      typescript: 5.3.3
 
-  /@remix-run/react@2.3.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2):
+  /@remix-run/react@2.3.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-7NozlZtbL5jtRGJhSrMydUGJGVp8kSjnv7APcsDojLbRHZJsLw8B0eXlVqKDg2M+WfRcBkuTI/ipgwIyLPRRyw==,
@@ -1747,11 +1774,11 @@ packages:
         optional: true
     dependencies:
       "@remix-run/router": 1.13.0
-      "@remix-run/server-runtime": 2.3.1(typescript@5.3.2)
+      "@remix-run/server-runtime": 2.3.1(typescript@5.3.3)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.20.0(react-dom@18.2.0)(react@18.2.0)
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: false
 
   /@remix-run/router@1.13.0:
@@ -1761,7 +1788,7 @@ packages:
       }
     engines: { node: ">=14.0.0" }
 
-  /@remix-run/serve@2.3.1(typescript@5.3.2):
+  /@remix-run/serve@2.3.1(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-jlV0zL2XoF/4DBcFkOfydvf+bdLhS0oIELu0SQJXiWWCrV2SNkBImLpCCtTl5roYlGphhaq3zsu9mzCE2+DsiQ==,
@@ -1769,8 +1796,8 @@ packages:
     engines: { node: ">=18.0.0" }
     hasBin: true
     dependencies:
-      "@remix-run/express": 2.3.1(express@4.18.2)(typescript@5.3.2)
-      "@remix-run/node": 2.3.1(typescript@5.3.2)
+      "@remix-run/express": 2.3.1(express@4.18.2)(typescript@5.3.3)
+      "@remix-run/node": 2.3.1(typescript@5.3.3)
       chokidar: 3.5.3
       compression: 1.7.4
       express: 4.18.2
@@ -1781,7 +1808,7 @@ packages:
       - supports-color
       - typescript
 
-  /@remix-run/server-runtime@2.3.1(typescript@5.3.2):
+  /@remix-run/server-runtime@2.3.1(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-ym1nfuYJKn5Vd4bqGIJbZMR1wh/A/qXSzOwqCrZxjdsAmb4YLUBnUAJFIoCRBrvcge92kXq/lXjGOFYf+qidZg==,
@@ -1799,7 +1826,7 @@ packages:
       cookie: 0.5.0
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
-      typescript: 5.3.2
+      typescript: 5.3.3
 
   /@remix-run/web-blob@3.1.0:
     resolution:
@@ -2115,13 +2142,13 @@ packages:
         integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==,
       }
     dependencies:
-      "@types/react": 18.2.42
+      "@types/react": 18.2.43
     dev: true
 
-  /@types/react@18.2.42:
+  /@types/react@18.2.43:
     resolution:
       {
-        integrity: sha512-c1zEr96MjakLYus/wPnuWDo1/zErfdU9rNsIGmE+NV71nx88FG9Ttgo5dqorXTu/LImX2f63WBP986gJkMPNbA==,
+        integrity: sha512-nvOV01ZdBdd/KW6FahSbcNplt2jCJfyWdTos61RYHV+FVv5L/g9AOX1bmbVcWcLFL8+KHQfh1zVIQrud6ihyQA==,
       }
     dependencies:
       "@types/prop-types": 15.7.11
@@ -5943,7 +5970,7 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.9(prettier@3.1.0):
+  /prettier-plugin-tailwindcss@0.5.9(prettier@3.1.1):
     resolution:
       {
         integrity: sha512-9x3t1s2Cjbut2QiP+O0mDqV3gLXTe2CgRlQDgucopVkUdw26sQi53p/q4qvGxMLBDfk/dcTV57Aa/zYwz9l8Ew==,
@@ -5995,7 +6022,7 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 3.1.0
+      prettier: 3.1.1
     dev: true
 
   /prettier@2.8.8:
@@ -6007,10 +6034,10 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.1.0:
+  /prettier@3.1.1:
     resolution:
       {
-        integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==,
+        integrity: sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw==,
       }
     engines: { node: ">=14" }
     hasBin: true
@@ -6026,16 +6053,16 @@ packages:
       parse-ms: 2.1.0
     dev: true
 
-  /prisma@5.6.0:
+  /prisma@5.7.0:
     resolution:
       {
-        integrity: sha512-EEaccku4ZGshdr2cthYHhf7iyvCcXqwJDvnoQRAJg5ge2Tzpv0e2BaMCp+CbbDUwoVTzwgOap9Zp+d4jFa2O9A==,
+        integrity: sha512-0rcfXO2ErmGAtxnuTNHQT9ztL0zZheQjOI/VNJzdq87C3TlGPQtMqtM+KCwU6XtmkoEr7vbCQqA7HF9IY0ST+Q==,
       }
     engines: { node: ">=16.13" }
     hasBin: true
     requiresBuild: true
     dependencies:
-      "@prisma/engines": 5.6.0
+      "@prisma/engines": 5.7.0
 
   /proc-log@3.0.0:
     resolution:
@@ -6171,12 +6198,12 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-hook-form@7.48.2(react@18.2.0):
+  /react-hook-form@7.49.0(react@18.2.0):
     resolution:
       {
-        integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==,
+        integrity: sha512-gf4qyY4WiqK2hP/E45UUT6wt3Khl49pleEVcIzxhLBrD6m+GMWtLRk0vMrRv45D1ZH8PnpXFwRPv0Pewske2jw==,
       }
-    engines: { node: ">=12.22.0" }
+    engines: { node: ">=18", pnpm: "8" }
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
@@ -7041,7 +7068,7 @@ packages:
       }
     dev: true
 
-  /tsconfck@2.1.2(typescript@5.3.2):
+  /tsconfck@2.1.2(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-ghqN1b0puy3MhhviwO2kGF8SeMDNhEbnKxjK7h6+fvY9JAxqvXi8y5NAHSQv687OVboS2uZIByzGd45/YxrRHg==,
@@ -7054,7 +7081,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: true
 
   /tsconfig-paths@4.2.0:
@@ -7079,10 +7106,10 @@ packages:
       media-typer: 0.3.0
       mime-types: 2.1.35
 
-  /typescript@5.3.2:
+  /typescript@5.3.3:
     resolution:
       {
-        integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==,
+        integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==,
       }
     engines: { node: ">=14.17" }
     hasBin: true
@@ -7365,10 +7392,10 @@ packages:
       - terser
     dev: true
 
-  /vite-tsconfig-paths@4.2.1(typescript@5.3.2)(vite@5.0.5):
+  /vite-tsconfig-paths@4.2.2(typescript@5.3.3)(vite@5.0.7):
     resolution:
       {
-        integrity: sha512-GNUI6ZgPqT3oervkvzU+qtys83+75N/OuDaQl7HmOqFTb0pjZsuARrRipsyJhJ3enqV8beI1xhGbToR4o78nSQ==,
+        integrity: sha512-dq0FjyxHHDnp0uS3P12WEOX2W7NeuLzX9AWP38D7Zw2CTbFErapwQVlCiT5DMJcVWKQ1MMdTe92PZl/rBQ7qcw==,
       }
     peerDependencies:
       vite: "*"
@@ -7378,8 +7405,8 @@ packages:
     dependencies:
       debug: 4.3.4
       globrex: 0.1.2
-      tsconfck: 2.1.2(typescript@5.3.2)
-      vite: 5.0.5
+      tsconfck: 2.1.2(typescript@5.3.3)
+      vite: 5.0.7
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7423,10 +7450,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@5.0.5:
+  /vite@5.0.7:
     resolution:
       {
-        integrity: sha512-OekeWqR9Ls56f3zd4CaxzbbS11gqYkEiBtnWFFgYR2WV8oPJRRKq0mpskYy/XaoCL3L7VINDhqqOMNDiYdGvGg==,
+        integrity: sha512-B4T4rJCDPihrQo2B+h1MbeGL/k/GMAHzhQ8S0LjQ142s6/+l3hHTT095ORvsshj4QCkoWu3Xtmob5mazvakaOw==,
       }
     engines: { node: ^18.0.0 || >=20.0.0 }
     hasBin: true

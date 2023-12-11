@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
 };
 
 const PageLogin = () => {
-  const { isLogin } = useUserInfo();
+  const { isLogin, userInfo } = useUserInfo();
   const { revalidate } = useRevalidator();
   const nav = useNavigate();
 
@@ -30,7 +30,7 @@ const PageLogin = () => {
   if (isLogin) {
     return (
       <>
-        <div>you have already login</div>
+        <div>welcom {userInfo?.username}, you have already login</div>
         <button
           className="btn"
           onClick={() => {
