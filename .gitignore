@@ -1,7 +1,6 @@
 node_modules
 /.cache
 /build
-/public/build
 prisma/dev.sqlite
 
 # Uncomment .env when deploy to production

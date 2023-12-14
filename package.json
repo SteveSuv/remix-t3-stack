@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && vite build --ssr",
-    "start": "remix-serve ./build/index.js",
+    "start": "PORT=3000 remix-serve ./build/server/index.js",
     "db:gen": "prisma generate",
     "db:push": "prisma db push",
     "format": "prettier -w .",
@@ -15,9 +15,9 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@prisma/client": "5.7.0",
-    "@remix-run/node": "^2.3.1",
-    "@remix-run/react": "^2.3.1",
-    "@remix-run/serve": "^2.3.1",
+    "@remix-run/node": "^2.4.0",
+    "@remix-run/react": "^2.4.0",
+    "@remix-run/serve": "^2.4.0",
     "@trpc/client": "^10.44.1",
     "@trpc/server": "^10.44.1",
     "clsx": "^2.0.0",
@@ -26,16 +26,16 @@
     "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.0",
+    "react-hook-form": "^7.49.2",
     "react-hot-toast": "^2.4.1",
     "superjson": "^2.2.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.3.1",
+    "@remix-run/dev": "^2.4.0",
     "@types/cookie": "^0.6.0",
     "@types/jsonwebtoken": "^9.0.5",
-    "@types/react": "^18.2.43",
+    "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
     "autoprefixer": "^10.4.16",
     "daisyui": "^4.4.19",
@@ -45,7 +45,7 @@
     "prisma": "^5.7.0",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3",
-    "vite": "^5.0.7",
+    "vite": "^5.0.8",
     "vite-tsconfig-paths": "^4.2.2"
   },
   "engines": {
