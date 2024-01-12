@@ -1,5 +1,5 @@
-import { authProcedure } from "~/server/trpc.server";
-import { Cookies } from "~/server/cookies.server";
+import { authProcedure } from "~/.server/trpc";
+import { Cookies } from "~/.server/cookies";
 import { JWT_KEY, isProd } from "~/utils/constant";
 
 export const logout = authProcedure.mutation(async (ctx) => {

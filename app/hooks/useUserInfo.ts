@@ -1,6 +1,6 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import { loader } from "~/root";
-import { IUserInfo } from "~/server/auth.server";
+import { IUserInfo } from "~/.server/auth";
 
 export const useUserInfo = () => {
   const ctx = useOutletContext<{ userInfo: IUserInfo } | null>();

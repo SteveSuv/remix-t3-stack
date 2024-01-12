@@ -30,7 +30,7 @@ const PageLogin = () => {
   if (isLogin) {
     return (
       <>
-        <div>welcom {userInfo?.username}, you have already login</div>
+        <div>welcome {userInfo?.username}, you have already login</div>
         <button
           className="btn"
           onClick={() => {

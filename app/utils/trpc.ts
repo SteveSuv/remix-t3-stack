@@ -1,6 +1,6 @@
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import SuperJSON from "superjson";
-import { AppRouter } from "~/server/trpc";
+import { AppRouter } from "~/.server/router";
 
 export const trpc = (request?: Request) => {
   return createTRPCProxyClient<AppRouter>({

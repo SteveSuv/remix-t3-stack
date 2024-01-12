@@ -1,7 +1,7 @@
 import { TRPCError, initTRPC } from "@trpc/server";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import SuperJSON from "superjson";
-import { getUserInfo } from "./auth.server";
+import { getUserInfo } from "./auth";
 
 export const createContext = async (ctx: FetchCreateContextFnOptions) => {
   const userInfo = await getUserInfo(ctx.req);

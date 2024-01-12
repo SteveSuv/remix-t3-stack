@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "~/server/trpc";
-import { createContext } from "~/server/trpc.server";
+import { appRouter } from "~/.server/router";
+import { createContext } from "~/.server/trpc";
 
 const handleRequest = (args: LoaderFunctionArgs | ActionFunctionArgs) => {
   return fetchRequestHandler({

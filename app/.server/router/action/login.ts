@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { db } from "~/server/db.server";
-import { unAuthProcedure } from "~/server/trpc.server";
-import { Cookies } from "~/server/cookies.server";
+import { db } from "~/.server/db";
+import { unAuthProcedure } from "~/.server/trpc";
+import { Cookies } from "~/.server/cookies";
 import { JWT_KEY, isProd, maxAge } from "~/utils/constant";
 
 export const login = unAuthProcedure

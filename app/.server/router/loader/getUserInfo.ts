@@ -1,4 +1,4 @@
-import { publicProcedure } from "~/server/trpc.server";
+import { publicProcedure } from "~/.server/trpc";
 
 export const getUserInfo = publicProcedure.query(async (ctx) => {
   // get userInfo from context

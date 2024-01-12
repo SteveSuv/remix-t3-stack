@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { db } from "~/server/db.server";
-import { authProcedure } from "~/server/trpc.server";
+import { db } from "~/.server/db";
+import { authProcedure } from "~/.server/trpc";
 
 export const doneTask = authProcedure
   .input(

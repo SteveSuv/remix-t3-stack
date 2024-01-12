@@ -1,14 +1,11 @@
-import jwt from "jsonwebtoken";
-import { db } from "./db.server";
-import { Cookies } from "./cookies.server";
 import { JWT_KEY } from "~/utils/constant";
+import jwt from "jsonwebtoken";
+import { db } from "./db";
+import { Cookies } from "./cookies";
 
 export type IUserInfo = {
   id: string;
-  uid: string;
   username: string;
-  email: string;
-  avatar: string | null;
 } | null;
 
 export const getUserInfo = async (request: Request) => {

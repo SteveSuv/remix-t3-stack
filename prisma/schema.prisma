@@ -1,5 +1,9 @@
 generator client {
   provider = "prisma-client-js"
+  
+  // native for dev, linux-musl-openssl-3.0.x for docker image node:alpine
+  // you can remove binaryTargets in dev
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {

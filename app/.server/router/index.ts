@@ -7,7 +7,7 @@ import { login } from "./action/login";
 import { getUserList } from "./loader/getUserList";
 import { getUserInfo } from "./loader/getUserInfo";
 import { getMyTaskList } from "./loader/getMyTaskList";
-import { t } from "../trpc.server";
+import { t } from "../trpc";
 
 export const appRouter = t.router({
   loader: t.router({

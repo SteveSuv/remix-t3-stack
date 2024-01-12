@@ -42,7 +42,7 @@ const PageHome = () => {
                 <div className="flex flex-col rounded-lg px-2 py-3 transition-all hover:bg-gray-100">
                   <div className="text-lg">username: {username}</div>
                   <div className="text-sm font-light text-gray-400">
-                    create at {createAt}
+                    create at {new Date(createAt).toLocaleString()}
                   </div>
                 </div>
               </Link>

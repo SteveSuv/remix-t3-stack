@@ -167,10 +167,10 @@ const PageMyTasks = () => {
                     <div className="text-lg">{content}</div>
                   </div>
                   <div className="text-sm font-light text-gray-400">
-                    created at {createAt}
+                    create at {new Date(createAt).toLocaleString()}
                   </div>
                   <div className="text-sm font-light text-gray-400">
-                    updated at {updatedAt}
+                    update at {new Date(updatedAt).toLocaleString()}
                   </div>
                 </div>
               </div>

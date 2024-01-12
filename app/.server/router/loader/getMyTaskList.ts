@@ -1,5 +1,5 @@
-import { db } from "~/server/db.server";
-import { publicProcedure } from "~/server/trpc.server";
+import { db } from "~/.server/db";
+import { publicProcedure } from "~/.server/trpc";
 
 export const getMyTaskList = publicProcedure.query(async (ctx) => {
   // get userId from context

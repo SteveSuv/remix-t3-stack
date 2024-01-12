@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { db } from "~/server/db.server";
-import { unAuthProcedure } from "~/server/trpc.server";
+import { db } from "~/.server/db";
+import { unAuthProcedure } from "~/.server/trpc";
 
 export const register = unAuthProcedure
   .input(
