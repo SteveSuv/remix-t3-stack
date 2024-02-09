@@ -2,7 +2,6 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Link,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -12,8 +11,8 @@ import {
   useRevalidator,
 } from "@remix-run/react";
 import { trpc } from "./utils/trpc";
-import "./global.css";
 import toast, { Toaster } from "react-hot-toast";
+import "./global.css";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { userInfo } = await trpc(args.request).loader.getUserInfo.query();
@@ -77,7 +76,6 @@ const App = () => {
         </div>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
         <Toaster />
       </body>
     </html>
