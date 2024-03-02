@@ -9,8 +9,8 @@ import {
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
+import { clsx } from "~/utils/clsx";
 import { trpc } from "~/utils/trpc";
-import clsx from "clsx";
 
 type IParams = { username: string };
 

@@ -16,7 +16,7 @@ const PageNotFound = () => {
           nav(-1);
         }}
       >
-        go back
+        Go Back
       </button>
     </>
   );

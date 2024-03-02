@@ -13,6 +13,12 @@ export const trpc = (request?: Request) => {
     links: [
       httpBatchLink({
         url: trpcUrl,
+        fetch(url, options) {
+          return fetch(url, {
+            ...options,
+            credentials: "include",
+          });
+        },
         headers: () => {
           const cookie = request?.headers.get("Cookie") || "";
           return { cookie };

@@ -37,7 +37,7 @@ const PageLogin = () => {
             nav(-1);
           }}
         >
-          go back
+          Go Back
         </button>
       </>
     );
