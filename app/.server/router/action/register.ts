@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { hash } from "~/.server/crypto";
 import { db } from "~/.server/db";
 import { unAuthProcedure } from "~/.server/trpc";
 
@@ -11,7 +12,7 @@ export const register = unAuthProcedure
     }),
   )
   .mutation(async (ctx) => {
-    const { username } = ctx.input;
+    const { username, password } = ctx.input;
     const user = await db.user.findUnique({ where: { username } });
 
     // if username exist, throw error
@@ -23,7 +24,9 @@ export const register = unAuthProcedure
     }
 
     // if user not exist, create user
-    const newUser = await db.user.create({ data: ctx.input });
+    const newUser = await db.user.create({
+      data: { username, password: hash(password) },
+    });
 
     return { userId: newUser.id };
   });

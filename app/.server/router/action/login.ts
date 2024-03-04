@@ -5,6 +5,7 @@ import { db } from "~/.server/db";
 import { unAuthProcedure } from "~/.server/trpc";
 import { Cookies } from "~/.server/cookies";
 import { JWT_KEY, isProd, maxAge } from "~/utils/constant";
+import { hash } from "~/.server/crypto";
 
 export const login = unAuthProcedure
   .input(
@@ -14,7 +15,11 @@ export const login = unAuthProcedure
     }),
   )
   .mutation(async (ctx) => {
-    const user = await db.user.findFirst({ where: ctx.input });
+    const { username, password } = ctx.input;
+
+    const user = await db.user.findFirst({
+      where: { username, password: hash(password) },
+    });
 
     // if user not exist, throw error
     if (!user) {
