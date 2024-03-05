@@ -63,7 +63,7 @@ dependencies:
 devDependencies:
   "@remix-run/dev":
     specifier: ^2.8.0
-    version: 2.8.0(@remix-run/serve@2.8.0)(typescript@5.3.3)(vite@5.1.4)
+    version: 2.8.0(@remix-run/serve@2.8.0)(typescript@5.3.3)(vite@5.1.5)
   "@types/cookie":
     specifier: ^0.6.0
     version: 0.6.0
@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^9.0.6
     version: 9.0.6
   "@types/react":
-    specifier: ^18.2.61
-    version: 18.2.61
+    specifier: ^18.2.62
+    version: 18.2.62
   "@types/react-dom":
     specifier: ^18.2.19
     version: 18.2.19
@@ -104,11 +104,11 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   vite:
-    specifier: ^5.1.4
-    version: 5.1.4
+    specifier: ^5.1.5
+    version: 5.1.5
   vite-tsconfig-paths:
     specifier: ^4.3.1
-    version: 4.3.1(typescript@5.3.3)(vite@5.1.4)
+    version: 4.3.1(typescript@5.3.3)(vite@5.1.5)
 
 packages:
   /@alloc/quick-lru@5.2.0:
@@ -1634,7 +1634,7 @@ packages:
     dependencies:
       "@prisma/debug": 5.10.2
 
-  /@remix-run/dev@2.8.0(@remix-run/serve@2.8.0)(typescript@5.3.3)(vite@5.1.4):
+  /@remix-run/dev@2.8.0(@remix-run/serve@2.8.0)(typescript@5.3.3)(vite@5.1.5):
     resolution:
       {
         integrity: sha512-kZtmK/7vKk7QV8CGCyC9Or3wP7EwL4rOJS9vObmTRAPv8mLyznR8bJxeNVWA7ICnCGejF8s2X3abVJrkEMiFlg==,
@@ -1710,7 +1710,7 @@ packages:
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
       typescript: 5.3.3
-      vite: 5.1.4
+      vite: 5.1.5
       ws: 7.5.9
     transitivePeerDependencies:
       - "@types/node"
@@ -2149,13 +2149,13 @@ packages:
         integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==,
       }
     dependencies:
-      "@types/react": 18.2.61
+      "@types/react": 18.2.62
     dev: true
 
-  /@types/react@18.2.61:
+  /@types/react@18.2.62:
     resolution:
       {
-        integrity: sha512-NURTN0qNnJa7O/k4XUkEW2yfygA+NxS0V5h1+kp9jPwhzZy95q3ADoGMP0+JypMhrZBTTgjKAUlTctde1zzeQA==,
+        integrity: sha512-l3f57BbaEKP0xcFzf+5qRG8/PXykZiuVM6eEoPtqBPCp6dxO3HhDkLIgIyXPhPKNAeXn3KO2pEaNgzaEo/asaw==,
       }
     dependencies:
       "@types/prop-types": 15.7.11
@@ -7408,7 +7408,7 @@ packages:
       - terser
     dev: true
 
-  /vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.1.4):
+  /vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.1.5):
     resolution:
       {
         integrity: sha512-cfgJwcGOsIxXOLU/nELPny2/LUD/lcf1IbfyeKTv2bsupVbTH/xpFtdQlBmIP1GEK2CjjLxYhFfB+QODFAx5aw==,
@@ -7422,7 +7422,7 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 3.0.1(typescript@5.3.3)
-      vite: 5.1.4
+      vite: 5.1.5
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7466,10 +7466,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@5.1.4:
+  /vite@5.1.5:
     resolution:
       {
-        integrity: sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==,
+        integrity: sha512-BdN1xh0Of/oQafhU+FvopafUp6WaYenLU/NFoL5WyJL++GxkNfieKzBhM24H3HVsPQrlAqB7iJYTHabzaRed5Q==,
       }
     engines: { node: ^18.0.0 || >=20.0.0 }
     hasBin: true

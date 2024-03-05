@@ -5,7 +5,7 @@ import { db } from "~/.server/db";
 import { unAuthProcedure } from "~/.server/trpc";
 import { Cookies } from "~/.server/cookies";
 import { JWT_KEY, isProd, maxAge } from "~/utils/constant";
-import { hash } from "~/.server/crypto";
+import { decrypt } from "~/.server/crypto";
 
 export const login = unAuthProcedure
   .input(
@@ -18,11 +18,19 @@ export const login = unAuthProcedure
     const { username, password } = ctx.input;
 
     const user = await db.user.findFirst({
-      where: { username, password: hash(password) },
+      where: { username },
     });
 
     // if user not exist, throw error
     if (!user) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "user not exist",
+      });
+    }
+
+    // if user's password is not correct, throw error
+    if (decrypt(user.password) !== password) {
       throw new TRPCError({
         code: "BAD_REQUEST",
         message: "wrong username or password",
