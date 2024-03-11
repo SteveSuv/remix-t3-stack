@@ -15,8 +15,9 @@ this is a todolist example use `remix-t3-stack`
 - react-hook-form
 - zod
 - docker
+- vercel
 
-# how to use
+# how to dev
 
 1. Clone this repository
 
@@ -34,18 +35,27 @@ pnpm i
 3. init database
 
 ```
-yarn db:push
-yarn db:gen
+pnpm db:push
+pnpm db:gen
 ```
 
-4. run
+4. run dev server
 
 ```
-yarn dev
+pnpm dev
 ```
 
-5. deploy
+# how to deploy
+
+- deploy to docker
 
 ```
-yarn deploy
+pnpm deploy
+```
+
+- deploy to [vercel](https://vercel.com/docs/frameworks/remix)
+
+```
+pnpm i -g vercel
+vercel
 ```
