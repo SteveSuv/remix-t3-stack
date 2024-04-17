@@ -1,36 +1,30 @@
 import { useNavigate, useRevalidator } from "@remix-run/react";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "~/common/trpc";
 import toast from "react-hot-toast";
-import { useUserInfo } from "~/hooks/useUserInfo";
+import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { MetaFunction } from "@remix-run/node";
+import { Controller, useZodForm } from "~/hooks/useZodForm";
+import { clsx } from "~/common/clsx";
 
 export const meta: MetaFunction = () => {
   return [{ title: "login account | remix-t3-stack" }];
 };
 
 const PageLogin = () => {
-  const { isLogin, userInfo } = useUserInfo();
+  const { myUserInfo } = useMyUserInfo();
   const { revalidate } = useRevalidator();
   const nav = useNavigate();
 
-  const FormSchema = z.object({
+  const { form } = useZodForm({
     username: z.string().min(3).max(20),
     password: z.string().min(3).max(20),
   });
 
-  type FormType = z.infer<typeof FormSchema>;
-
-  const { register, handleSubmit, reset } = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
-  });
-
-  if (isLogin) {
+  if (myUserInfo) {
     return (
       <>
-        <div>welcome {userInfo?.username}, you have already login</div>
+        <div>welcome {myUserInfo?.username}, you have already login</div>
         <button
           className="btn"
           onClick={() => {
@@ -49,41 +43,66 @@ const PageLogin = () => {
       <form
         className="flex flex-col gap-4"
         autoComplete="off"
-        onSubmit={handleSubmit(
-          async (data) => {
-            const { userId } = await trpc().action.login.mutate(data);
+        onSubmit={form.handleSubmit(async (data) => {
+          const { userId } = await trpc().action.login.mutate(data);
+
+          if (userId) {
+            form.reset();
+            toast.success("register successful");
             revalidate();
-            if (userId) {
-              reset();
-              toast.success("register successful");
-              nav("/login", { replace: true });
-            }
-          },
-          (errors) => {
-            console.error(errors);
-            toast.error("invalid username or password");
-          },
-        )}
+            nav("/login", { replace: true });
+          }
+        })}
       >
-        <input
-          {...register("username")}
-          className="input input-bordered w-[300px]"
-          placeholder="username"
-          required
-          autoFocus
-          min={3}
-          max={20}
+        <Controller
+          name="username"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <>
+              <input
+                {...field}
+                className={clsx(
+                  "input input-bordered w-[300px]",
+                  fieldState.invalid && "input-error",
+                )}
+                placeholder="username"
+                required
+                autoFocus
+                min={3}
+                max={20}
+              />
+              <small className="text-error">{fieldState.error?.message}</small>
+            </>
+          )}
         />
-        <input
-          {...register("password")}
-          className="input input-bordered w-[300px]"
-          type="password"
-          placeholder="password"
-          required
-          min={3}
-          max={20}
+
+        <Controller
+          name="password"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <>
+              <input
+                {...field}
+                className={clsx(
+                  "input input-bordered w-[300px]",
+                  fieldState.invalid && "input-error",
+                )}
+                type="password"
+                placeholder="password"
+                required
+                min={3}
+                max={20}
+              />
+              <small className="text-error">{fieldState.error?.message}</small>
+            </>
+          )}
         />
-        <button className="btn" type="submit">
+
+        <button
+          className="btn"
+          type="submit"
+          disabled={form.formState.isSubmitting}
+        >
           Login
         </button>
       </form>

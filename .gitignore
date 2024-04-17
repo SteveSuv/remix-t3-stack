@@ -4,5 +4,4 @@ node_modules
 prisma/dev.sqlite
 
 # Uncomment .env when deploy to production
-# .env 
-.vercel
+# .env

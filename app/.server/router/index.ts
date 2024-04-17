@@ -5,14 +5,14 @@ import { register } from "./action/register";
 import { logout } from "./action/logout";
 import { login } from "./action/login";
 import { getUserList } from "./loader/getUserList";
-import { getUserInfo } from "./loader/getUserInfo";
+import { getMyUserInfo } from "./loader/getMyUserInfo";
 import { getMyTaskList } from "./loader/getMyTaskList";
 import { t } from "../trpc";
 
 export const appRouter = t.router({
   loader: t.router({
     getMyTaskList,
-    getUserInfo,
+    getMyUserInfo,
     getUserList,
   }),
   action: t.router({

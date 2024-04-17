@@ -53,9 +53,5 @@ pnpm dev
 pnpm deploy
 ```
 
-- deploy to [vercel](https://vercel.com/docs/frameworks/remix)
+- deploy to vercel, follow this [guide](https://vercel.com/docs/frameworks/remix)
 
-```
-pnpm i -g vercel
-vercel
-```

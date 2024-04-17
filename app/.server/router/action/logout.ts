@@ -1,6 +1,6 @@
 import { authProcedure } from "~/.server/trpc";
 import { Cookies } from "~/.server/cookies";
-import { JWT_KEY, isProd } from "~/utils/constant";
+import { JWT_KEY, isProd } from "~/common/constant";
 
 export const logout = authProcedure.mutation(async (ctx) => {
   // delete cookie to logout

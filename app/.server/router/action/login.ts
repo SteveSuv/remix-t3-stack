@@ -4,8 +4,8 @@ import { z } from "zod";
 import { db } from "~/.server/db";
 import { unAuthProcedure } from "~/.server/trpc";
 import { Cookies } from "~/.server/cookies";
-import { JWT_KEY, isProd, maxAge } from "~/utils/constant";
-import { decrypt } from "~/.server/crypto";
+import { JWT_KEY, isProd, maxAge } from "~/common/constant";
+import { encrypt } from "~/.server/crypto";
 
 export const login = unAuthProcedure
   .input(
@@ -30,7 +30,7 @@ export const login = unAuthProcedure
     }
 
     // if user's password is not correct, throw error
-    if (decrypt(user.password) !== password) {
+    if (user.password !== encrypt(password)) {
       throw new TRPCError({
         code: "BAD_REQUEST",
         message: "wrong username or password",

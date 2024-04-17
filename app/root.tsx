@@ -7,15 +7,15 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { trpc } from "./utils/trpc";
+import { trpc } from "./common/trpc";
 import { Toaster } from "react-hot-toast";
 import { ReactNode } from "react";
 import { Header } from "./components/Header";
 import "./global.css";
 
 export const loader = async (args: LoaderFunctionArgs) => {
-  const { userInfo } = await trpc(args.request).loader.getUserInfo.query();
-  return { userInfo };
+  const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
+  return { myUserInfo };
 };
 
 export const Layout = ({ children }: { children: ReactNode }) => {
@@ -37,12 +37,12 @@ export const Layout = ({ children }: { children: ReactNode }) => {
 };
 
 const App = () => {
-  const { userInfo } = useLoaderData<typeof loader>();
+  const { myUserInfo } = useLoaderData<typeof loader>();
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center gap-4">
       <Header />
-      <Outlet context={{ userInfo }} />
+      <Outlet context={{ myUserInfo }} />
       <Toaster />
     </main>
   );

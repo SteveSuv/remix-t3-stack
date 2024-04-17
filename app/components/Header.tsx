@@ -1,10 +1,10 @@
 import { Link, useNavigate, useRevalidator } from "@remix-run/react";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "~/common/trpc";
 import toast from "react-hot-toast";
-import { useUserInfo } from "~/hooks/useUserInfo";
+import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 
 export const Header = () => {
-  const { userInfo } = useUserInfo();
+  const { myUserInfo } = useMyUserInfo();
   const { revalidate } = useRevalidator();
   const nav = useNavigate();
 
@@ -23,10 +23,10 @@ export const Header = () => {
           Back
         </button>
       </div>
-      {userInfo ? (
+      {myUserInfo ? (
         <div className="flex items-center gap-2">
-          <Link to={`/tasks/${userInfo.username}`}>
-            <div className="font-bold">{userInfo.username}</div>
+          <Link to={`/tasks/${myUserInfo.username}`}>
+            <div className="font-bold">{myUserInfo.username}</div>
           </Link>
           <button
             className="btn btn-sm"

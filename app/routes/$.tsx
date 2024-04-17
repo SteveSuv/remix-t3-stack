@@ -7,6 +7,7 @@ export const meta: MetaFunction = () => {
 
 const PageNotFound = () => {
   const nav = useNavigate();
+
   return (
     <>
       <div>Page Not Found</div>

@@ -1,4 +1,4 @@
-import { JWT_KEY } from "~/utils/constant";
+import { JWT_KEY } from "~/common/constant";
 import jwt from "jsonwebtoken";
 import { db } from "./db";
 import { Cookies } from "./cookies";
@@ -8,7 +8,7 @@ export type IUserInfo = {
   username: string;
 } | null;
 
-export const getUserInfo = async (request: Request) => {
+export const getMyUserInfo = async (request: Request) => {
   const token = Cookies.get(request, JWT_KEY);
 
   if (!token) return null;
@@ -18,7 +18,7 @@ export const getUserInfo = async (request: Request) => {
       userId: string;
     };
 
-    const user = await db.user.findUnique({
+    const myUserInfo = await db.user.findUnique({
       where: { id: userId },
       select: {
         id: true,
@@ -26,8 +26,9 @@ export const getUserInfo = async (request: Request) => {
       },
     });
 
-    return user;
+    return myUserInfo;
   } catch (error) {
+    console.error(error);
     return null;
   }
 };

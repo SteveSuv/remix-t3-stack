@@ -9,45 +9,48 @@
     "db:gen": "prisma generate",
     "db:push": "prisma db push",
     "format": "prettier -w .",
+    "clean": "rm -rf build node_modules pnpm-lock.yaml",
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
-    "@prisma/client": "5.10.2",
+    "@prisma/client": "5.12.1",
     "@remix-run/node": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "@remix-run/serve": "^2.8.1",
-    "@trpc/client": "^10.45.1",
-    "@trpc/server": "^10.45.1",
+    "@trpc/client": "^10.45.2",
+    "@trpc/server": "^10.45.2",
     "cookie": "^0.6.0",
-    "crypto-js": "^4.2.0",
-    "isbot": "^5.1.1",
+    "isbot": "^5.1.4",
     "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.51.0",
+    "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
     "superjson": "^2.2.1",
-    "tailwind-merge": "^2.2.1",
+    "tailwind-merge": "^2.2.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.8.1",
     "@types/cookie": "^0.6.0",
-    "@types/crypto-js": "^4.2.2",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
-    "@vercel/remix": "^2.8.1",
-    "autoprefixer": "^10.4.18",
-    "daisyui": "^4.7.3",
-    "postcss": "^8.4.35",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.10.2",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.12",
-    "prisma": "^5.10.2",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.5",
-    "vite-tsconfig-paths": "^4.3.1"
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prisma": "^5.12.1",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.9",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }

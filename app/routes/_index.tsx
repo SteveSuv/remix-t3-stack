@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "~/common/trpc";
 
 export const meta: MetaFunction = () => {
   return [{ title: "remix-t3-stack" }];

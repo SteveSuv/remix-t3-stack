@@ -1,4 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import {
   Link,
@@ -6,18 +5,18 @@ import {
   useParams,
   useRevalidator,
 } from "@remix-run/react";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { clsx } from "~/utils/clsx";
-import { trpc } from "~/utils/trpc";
+import { Controller, useZodForm } from "~/hooks/useZodForm";
+import { clsx } from "~/common/clsx";
+import { trpc } from "~/common/trpc";
 
 type IParams = { username: string };
 
 export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
   const { username } = params as IParams;
-  const { myTaskList, isSelf, userInfo } = data || {};
-  if (!userInfo) {
+  const { myTaskList, isSelf, myUserInfo } = data || {};
+  if (!myUserInfo) {
     return [{ title: "page need login | remix-t3-stack" }];
   }
   if (!isSelf) {
@@ -34,59 +33,64 @@ export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { username } = args.params as IParams;
-  const { userInfo } = await trpc(args.request).loader.getUserInfo.query();
+  const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
 
-  const isSelf = !!userInfo && username === userInfo.username;
+  const isSelf = !!myUserInfo && username === myUserInfo.username;
 
   if (isSelf) {
     const { myTaskList } = await trpc(
       args.request,
     ).loader.getMyTaskList.query();
-    return { myTaskList, isSelf, userInfo };
+    return { myTaskList, isSelf, myUserInfo };
   }
 
-  return { myTaskList: [], isSelf, userInfo };
+  return { myTaskList: [], isSelf, myUserInfo };
 };
 
 const AddTaskForm = () => {
   const { revalidate } = useRevalidator();
 
-  const FormSchema = z.object({
+  const { form } = useZodForm({
     content: z.string().min(1).max(100),
-  });
-
-  type FormType = z.infer<typeof FormSchema>;
-
-  const { register, handleSubmit, reset } = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
   });
 
   return (
     <form
       className="flex flex-col gap-4"
       autoComplete="off"
-      onSubmit={handleSubmit(
-        async (data) => {
-          await trpc().action.addTask.mutate(data);
-          revalidate();
-          reset();
-          toast.success("add task successful");
-        },
-        (errors) => {
-          console.error(errors);
-          toast.error("invalid content");
-        },
-      )}
+      onSubmit={form.handleSubmit(async (data) => {
+        await trpc().action.addTask.mutate(data);
+        form.reset();
+        toast.success("add task successful");
+        revalidate();
+      })}
     >
-      <input
-        {...register("content")}
-        className="input input-bordered w-[300px]"
-        placeholder="input task content"
-        required
-        min={1}
-        max={100}
+      <Controller
+        name="content"
+        control={form.control}
+        render={({ field, fieldState }) => (
+          <>
+            <input
+              {...field}
+              className={clsx(
+                "input input-bordered w-[300px]",
+                fieldState.invalid && "input-error",
+              )}
+              placeholder="input task content"
+              required
+              min={1}
+              max={100}
+            />
+            <small className="text-error">{fieldState.error?.message}</small>
+          </>
+        )}
       />
-      <button className="btn" type="submit">
+
+      <button
+        className="btn"
+        type="submit"
+        disabled={form.formState.isSubmitting}
+      >
         Add Task
       </button>
     </form>
@@ -95,10 +99,10 @@ const AddTaskForm = () => {
 
 const PageMyTasks = () => {
   const { revalidate } = useRevalidator();
-  const { myTaskList, isSelf, userInfo } = useLoaderData<typeof loader>();
+  const { myTaskList, isSelf, myUserInfo } = useLoaderData<typeof loader>();
   const { username } = useParams() as IParams;
 
-  if (!userInfo) {
+  if (!myUserInfo) {
     return (
       <>
         <div>this page need login</div>
@@ -113,7 +117,7 @@ const PageMyTasks = () => {
     return (
       <>
         <div>you can't view tasks of other users ({username})</div>
-        <Link to={`/tasks/${userInfo?.username}`}>
+        <Link to={`/tasks/${myUserInfo?.username}`}>
           <button className="btn">View my tasks</button>
         </Link>
       </>

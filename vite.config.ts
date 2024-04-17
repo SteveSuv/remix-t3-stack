@@ -2,16 +2,10 @@ import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { installGlobals } from "@remix-run/node";
-import { vercelPreset } from "@vercel/remix/vite";
 
 installGlobals();
 
 export default defineConfig({
-  plugins: [
-    remix({
-      presets: [vercelPreset()],
-    }),
-    tsconfigPaths(),
-  ],
+  plugins: [remix(), tsconfigPaths()],
   server: { port: 3000 },
 });

@@ -1,10 +1,10 @@
 import { useNavigate, useRevalidator } from "@remix-run/react";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "~/common/trpc";
 import toast from "react-hot-toast";
 import { MetaFunction } from "@remix-run/node";
+import { Controller, useZodForm } from "~/hooks/useZodForm";
+import { clsx } from "~/common/clsx";
 
 export const meta: MetaFunction = () => {
   return [{ title: "register account | remix-t3-stack" }];
@@ -14,15 +14,9 @@ const PageRegister = () => {
   const { revalidate } = useRevalidator();
   const nav = useNavigate();
 
-  const FormSchema = z.object({
+  const { form } = useZodForm({
     username: z.string().min(3).max(20),
     password: z.string().min(3).max(20),
-  });
-
-  type FormType = z.infer<typeof FormSchema>;
-
-  const { register, handleSubmit, reset } = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
   });
 
   return (
@@ -31,41 +25,65 @@ const PageRegister = () => {
       <form
         className="flex flex-col gap-4"
         autoComplete="off"
-        onSubmit={handleSubmit(
-          async (data) => {
-            const { userId } = await trpc().action.register.mutate(data);
+        onSubmit={form.handleSubmit(async (data) => {
+          const { userId } = await trpc().action.register.mutate(data);
+          if (userId) {
+            form.reset();
+            toast.success("register successful");
             revalidate();
-            if (userId) {
-              reset();
-              toast.success("register successful");
-              nav("/login", { replace: true });
-            }
-          },
-          (errors) => {
-            console.error(errors);
-            toast.error("invalid username or password");
-          },
-        )}
+            nav("/login", { replace: true });
+          }
+        })}
       >
-        <input
-          {...register("username")}
-          className="input input-bordered w-[300px]"
-          placeholder="username"
-          required
-          autoFocus
-          min={3}
-          max={20}
+        <Controller
+          name="username"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <>
+              <input
+                {...field}
+                className={clsx(
+                  "input input-bordered w-[300px]",
+                  fieldState.invalid && "input-error",
+                )}
+                placeholder="username"
+                required
+                autoFocus
+                min={3}
+                max={20}
+              />
+              <small className="text-error">{fieldState.error?.message}</small>
+            </>
+          )}
         />
-        <input
-          {...register("password")}
-          className="input input-bordered w-[300px]"
-          type="password"
-          placeholder="password"
-          required
-          min={3}
-          max={20}
+
+        <Controller
+          name="password"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <>
+              <input
+                {...field}
+                className={clsx(
+                  "input input-bordered w-[300px]",
+                  fieldState.invalid && "input-error",
+                )}
+                type="password"
+                placeholder="password"
+                required
+                min={3}
+                max={20}
+              />
+              <small className="text-error">{fieldState.error?.message}</small>
+            </>
+          )}
         />
-        <button className="btn" type="submit">
+
+        <button
+          className="btn"
+          type="submit"
+          disabled={form.formState.isSubmitting}
+        >
           Register
         </button>
       </form>
