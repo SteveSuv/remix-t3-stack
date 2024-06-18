@@ -1,19 +1,23 @@
-import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { unstable_defineLoader as defineLoader } from "@remix-run/node";
 import {
   Link,
   useLoaderData,
   useParams,
   useRevalidator,
+  MetaArgs_SingleFetch,
 } from "@remix-run/react";
 import toast from "react-hot-toast";
 import { z } from "zod";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
 import { trpc } from "~/common/trpc";
+import { Trash2Icon, Plus, LogIn } from "lucide-react";
+import { Title } from "~/components/Title";
+import { LuIcon } from "~/components/LuIcon";
 
 type IParams = { username: string };
 
-export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
+export const meta = ({ params, data }: MetaArgs_SingleFetch<typeof loader>) => {
   const { username } = params as IParams;
   const { myTaskList, isSelf, myUserInfo } = data || {};
   if (!myUserInfo) {
@@ -31,7 +35,7 @@ export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
   ];
 };
 
-export const loader = async (args: LoaderFunctionArgs) => {
+export const loader = defineLoader(async (args) => {
   const { username } = args.params as IParams;
   const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
 
@@ -45,7 +49,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
   }
 
   return { myTaskList: [], isSelf, myUserInfo };
-};
+});
 
 const AddTaskForm = () => {
   const { revalidate } = useRevalidator();
@@ -56,7 +60,7 @@ const AddTaskForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-2"
       autoComplete="off"
       onSubmit={form.handleSubmit(async (data) => {
         await trpc().action.addTask.mutate(data);
@@ -67,6 +71,7 @@ const AddTaskForm = () => {
     >
       <Controller
         name="content"
+        defaultValue=""
         control={form.control}
         render={({ field, fieldState }) => (
           <>
@@ -91,6 +96,7 @@ const AddTaskForm = () => {
         type="submit"
         disabled={form.formState.isSubmitting}
       >
+        <LuIcon icon={Plus} />
         Add Task
       </button>
     </form>
@@ -105,9 +111,12 @@ const PageMyTasks = () => {
   if (!myUserInfo) {
     return (
       <>
-        <div>this page need login</div>
+        <Title>Page Need Login</Title>
         <Link to="/login">
-          <button className="btn">Login</button>
+          <button className="btn">
+            <LuIcon icon={LogIn} />
+            Login
+          </button>
         </Link>
       </>
     );
@@ -116,9 +125,9 @@ const PageMyTasks = () => {
   if (!isSelf) {
     return (
       <>
-        <div>you can't view tasks of other users ({username})</div>
+        <Title>No Permission To Access Other Users ({username})</Title>
         <Link to={`/tasks/${myUserInfo?.username}`}>
-          <button className="btn">View my tasks</button>
+          <button className="btn">View My Tasks</button>
         </Link>
       </>
     );
@@ -127,60 +136,82 @@ const PageMyTasks = () => {
   if (!myTaskList.length) {
     return (
       <>
-        <div>no task yet</div>
+        <Title>No One Task Yet</Title>
         <AddTaskForm />
       </>
     );
   }
 
+  const doneTaskList = myTaskList.filter((e) => !!e.done);
+  const unDoneTaskList = myTaskList.filter((e) => !e.done);
+  const sortedTaskList = [...unDoneTaskList, ...doneTaskList];
+
   return (
     <>
-      <div>
-        Done ({myTaskList.filter((e) => !!e.done).length}) / Tasks (
-        {myTaskList.length})
-      </div>
-      <div className="my-2 flex flex-col">
-        {myTaskList.map(
-          ({ id: taskId, content, done, createAt, updatedAt }, index) => {
-            return (
-              <div key={taskId}>
-                {index > 0 && <div className="my-3 border-t" />}
-                <div
-                  className={clsx(
-                    "flex flex-col",
-                    done && "line-through opacity-60",
-                  )}
-                >
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      defaultChecked={done}
-                      onClick={async () => {
-                        if (done) {
-                          await trpc().action.unDoneTask.mutate({ taskId });
-                          revalidate();
-                          toast.success("Task UnDone");
-                        } else {
-                          await trpc().action.doneTask.mutate({ taskId });
-                          revalidate();
-                          toast.success("Task Done");
-                        }
-                      }}
+      <Title>
+        Done ({doneTaskList.length}) / Tasks ({myTaskList.length})
+      </Title>
+      <div className="my-2 flex flex-col gap-4">
+        {sortedTaskList.map((task) => {
+          const { id: taskId, content, done, createAt, updatedAt } = task;
+
+          return (
+            <label key={taskId}>
+              <div
+                className={clsx(
+                  "flex cursor-pointer justify-between gap-4 rounded-lg border px-4 py-2 hover:bg-gray-100",
+                  done && "bg-gray-100 line-through opacity-60",
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox-success checkbox"
+                    defaultChecked={done}
+                    onClick={async () => {
+                      if (done) {
+                        await trpc().action.unDoneTask.mutate({ taskId });
+                        revalidate();
+                        toast.success("Task UnDone");
+                      } else {
+                        await trpc().action.doneTask.mutate({ taskId });
+                        revalidate();
+                        toast.success("Task Done");
+                      }
+                    }}
+                  />
+                  <div className="text-lg">{content}</div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col">
+                    <div className="text-sm font-light text-gray-400">
+                      create at {new Date(createAt).toLocaleString()}
+                    </div>
+                    <div className="text-sm font-light text-gray-400">
+                      update at {new Date(updatedAt).toLocaleString()}
+                    </div>
+                  </div>
+                  <button
+                    className="btn btn-circle btn-ghost btn-sm"
+                    onClick={async (e) => {
+                      e.stopPropagation();
+                      await trpc().action.deleteTask.mutate({ taskId });
+                      revalidate();
+                      toast.success("Task Deleted");
+                    }}
+                  >
+                    <Trash2Icon
+                      size={20}
+                      strokeWidth={1.5}
+                      className="text-gray-500"
                     />
-                    <div className="text-lg">{content}</div>
-                  </div>
-                  <div className="text-sm font-light text-gray-400">
-                    create at {new Date(createAt).toLocaleString()}
-                  </div>
-                  <div className="text-sm font-light text-gray-400">
-                    update at {new Date(updatedAt).toLocaleString()}
-                  </div>
+                  </button>
                 </div>
               </div>
-            );
-          },
-        )}
+            </label>
+          );
+        })}
       </div>
       <AddTaskForm />
     </>

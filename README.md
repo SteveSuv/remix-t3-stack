@@ -54,4 +54,3 @@ pnpm deploy
 ```
 
 - deploy to vercel, follow this [guide](https://vercel.com/docs/frameworks/remix)
-

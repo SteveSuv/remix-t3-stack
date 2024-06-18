@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { unstable_defineLoader as defineLoader } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -13,10 +13,10 @@ import { ReactNode } from "react";
 import { Header } from "./components/Header";
 import "./global.css";
 
-export const loader = async (args: LoaderFunctionArgs) => {
+export const loader = defineLoader(async (args) => {
   const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
   return { myUserInfo };
-};
+});
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (

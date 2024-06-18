@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import { MetaFunction } from "@remix-run/node";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
+import { Title } from "~/components/Title";
+import { LuIcon } from "~/components/LuIcon";
+import { User } from "lucide-react";
 
 export const meta: MetaFunction = () => {
   return [{ title: "register account | remix-t3-stack" }];
@@ -21,9 +24,9 @@ const PageRegister = () => {
 
   return (
     <>
-      <div>Register Account</div>
+      <Title>Register New Account</Title>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-2"
         autoComplete="off"
         onSubmit={form.handleSubmit(async (data) => {
           const { userId } = await trpc().action.register.mutate(data);
@@ -37,6 +40,7 @@ const PageRegister = () => {
       >
         <Controller
           name="username"
+          defaultValue=""
           control={form.control}
           render={({ field, fieldState }) => (
             <>
@@ -59,6 +63,7 @@ const PageRegister = () => {
 
         <Controller
           name="password"
+          defaultValue=""
           control={form.control}
           render={({ field, fieldState }) => (
             <>
@@ -84,6 +89,7 @@ const PageRegister = () => {
           type="submit"
           disabled={form.formState.isSubmitting}
         >
+          <LuIcon icon={User} />
           Register
         </button>
       </form>

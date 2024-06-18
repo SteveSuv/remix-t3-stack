@@ -1,4 +1,9 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  unstable_defineLoader as defineLoader,
+  unstable_defineAction as defineAction,
+} from "@remix-run/node";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { appRouter } from "~/.server/router";
 import { createContext } from "~/.server/trpc";
@@ -12,10 +17,6 @@ const handleRequest = (args: LoaderFunctionArgs | ActionFunctionArgs) => {
   });
 };
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  return handleRequest(args);
-};
+export const loader = defineLoader((args) => handleRequest(args));
 
-export const action = async (args: ActionFunctionArgs) => {
-  return handleRequest(args);
-};
+export const action = defineAction((args) => handleRequest(args));

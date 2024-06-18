@@ -6,7 +6,10 @@ export const getMyTaskList = publicProcedure.query(async (ctx) => {
   const { userId } = ctx.ctx;
 
   const myTaskList = userId
-    ? await db.task.findMany({ where: { userId } })
+    ? await db.task.findMany({
+        where: { userId },
+        orderBy: [{ createAt: "desc" }],
+      })
     : [];
 
   return { myTaskList };
