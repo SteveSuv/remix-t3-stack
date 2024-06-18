@@ -4,7 +4,7 @@ import { AppRouter } from "~/.server/router";
 import { isProd } from "./constant";
 
 const devUrl = "http://localhost:3000/trpc";
-const prodUrl = "http://localhost:3000/trpc"; // change to real domain when deploy to prod
+const prodUrl = "https://remix-t3-stack.vercel.app/trpc"; // change to your real domain when deploy to prod
 const trpcUrl = isProd ? prodUrl : devUrl;
 
 export const trpc = (request?: Request) => {

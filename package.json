@@ -20,6 +20,7 @@
     "@remix-run/serve": "^2.9.2",
     "@trpc/client": "^10.45.2",
     "@trpc/server": "^10.45.2",
+    "@vercel/remix": "2.9.2-patch.2",
     "cookie": "^0.6.0",
     "isbot": "^5.1.9",
     "jsonwebtoken": "^9.0.2",
