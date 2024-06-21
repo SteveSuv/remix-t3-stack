@@ -1,6 +1,15 @@
 # remix-t3-stack
 
-this is a todolist example use `remix-t3-stack`
+a full-stack TodoList example use `remix-t3-stack`, aims to bring better DX to react developers.
+
+# features
+
+- end-to-end type safe by `trpc`
+- get userinfo anywhere by `useMyUserInfo`
+- type safe form with `zod` by `useZodForm`
+- no need to export `action`, just call `trpc` to mutate anywhere
+- request with permission controll by `middleware`
+- deploy to `docker` or `vercel`
 
 # stack
 
@@ -13,6 +22,7 @@ this is a todolist example use `remix-t3-stack`
 - jwt
 - pnpm
 - react-hook-form
+- lucide-icons
 - zod
 - docker
 - vercel
@@ -45,6 +55,13 @@ pnpm db:gen
 pnpm dev
 ```
 
+5. build and preview
+
+```
+pnpm build
+pnpm start
+```
+
 # how to deploy
 
 - deploy to docker
@@ -53,4 +70,4 @@ pnpm dev
 pnpm deploy
 ```
 
-- deploy to vercel, follow this [guide](https://vercel.com/docs/frameworks/remix)
+- deploy to vercel: follow this [guide](https://vercel.com/docs/frameworks/remix)
