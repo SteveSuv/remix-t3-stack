@@ -1,14 +1,14 @@
-import { Link, useNavigate, useRevalidator } from "@remix-run/react";
-import { trpc } from "~/common/trpc";
+import { Link, useRevalidator } from "@remix-run/react";
+import { trpcClient } from "~/common/trpc";
 import toast from "react-hot-toast";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
-import { Home, ChevronLeft, LogIn, LogOut, User } from "lucide-react";
+import { Home, LogIn, LogOut, User } from "lucide-react";
 import { LuIcon } from "./LuIcon";
+import { BackButton } from "./BackButton";
 
 export const Header = () => {
   const { myUserInfo } = useMyUserInfo();
   const { revalidate } = useRevalidator();
-  const nav = useNavigate();
 
   return (
     <div className="fixed left-0 top-0 flex w-screen items-center justify-between p-6">
@@ -18,15 +18,7 @@ export const Header = () => {
             <LuIcon icon={Home} /> Home
           </button>
         </Link>
-        <button
-          className="btn btn-sm"
-          onClick={() => {
-            nav(-1);
-          }}
-        >
-          <LuIcon icon={ChevronLeft} />
-          Back
-        </button>
+        <BackButton className="btn-sm" />
       </div>
       {myUserInfo ? (
         <div className="flex items-center gap-2">
@@ -40,7 +32,7 @@ export const Header = () => {
             className="btn btn-sm"
             onClick={async () => {
               // client fetch mutation
-              await trpc().action.logout.mutate();
+              await trpcClient.action.logout.mutate();
               toast.success("logout successful");
               // reload all loader data
               revalidate();

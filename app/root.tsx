@@ -7,14 +7,16 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { trpc } from "./common/trpc";
+import { trpcServer } from "./common/trpc";
 import { Toaster } from "react-hot-toast";
 import { ReactNode } from "react";
 import { Header } from "./components/Header";
 import "./global.css";
 
 export const loader = defineLoader(async (args) => {
-  const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
+  const { myUserInfo } = await trpcServer(
+    args.request,
+  ).loader.getMyUserInfo.query();
   return { myUserInfo };
 });
 

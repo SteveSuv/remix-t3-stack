@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
-import { trpc } from "~/common/trpc";
+import { trpcClient, trpcServer } from "~/common/trpc";
 import { Trash2Icon, Plus, LogIn } from "lucide-react";
 import { Title } from "~/components/Title";
 import { LuIcon } from "~/components/LuIcon";
@@ -37,12 +37,14 @@ export const meta = ({ params, data }: MetaArgs_SingleFetch<typeof loader>) => {
 
 export const loader = defineLoader(async (args) => {
   const { username } = args.params as IParams;
-  const { myUserInfo } = await trpc(args.request).loader.getMyUserInfo.query();
+  const { myUserInfo } = await trpcServer(
+    args.request,
+  ).loader.getMyUserInfo.query();
 
   const isSelf = !!myUserInfo && username === myUserInfo.username;
 
   if (isSelf) {
-    const { myTaskList } = await trpc(
+    const { myTaskList } = await trpcServer(
       args.request,
     ).loader.getMyTaskList.query();
     return { myTaskList, isSelf, myUserInfo };
@@ -63,7 +65,7 @@ const AddTaskForm = () => {
       className="flex flex-col gap-2"
       autoComplete="off"
       onSubmit={form.handleSubmit(async (data) => {
-        await trpc().action.addTask.mutate(data);
+        await trpcClient.action.addTask.mutate(data);
         form.reset();
         toast.success("add task successful");
         revalidate();
@@ -125,7 +127,9 @@ const PageMyTasks = () => {
   if (!isSelf) {
     return (
       <>
-        <Title>No Permission To Access Other Users ({username})</Title>
+        <Title>
+          No Permission To Access Todolist Of Other User ({username})
+        </Title>
         <Link to={`/tasks/${myUserInfo?.username}`}>
           <button className="btn">View My Tasks</button>
         </Link>
@@ -170,11 +174,11 @@ const PageMyTasks = () => {
                     defaultChecked={done}
                     onClick={async () => {
                       if (done) {
-                        await trpc().action.unDoneTask.mutate({ taskId });
+                        await trpcClient.action.unDoneTask.mutate({ taskId });
                         revalidate();
                         toast.success("Task UnDone");
                       } else {
-                        await trpc().action.doneTask.mutate({ taskId });
+                        await trpcClient.action.doneTask.mutate({ taskId });
                         revalidate();
                         toast.success("Task Done");
                       }
@@ -196,7 +200,7 @@ const PageMyTasks = () => {
                     className="btn btn-circle btn-ghost btn-sm"
                     onClick={async (e) => {
                       e.stopPropagation();
-                      await trpc().action.deleteTask.mutate({ taskId });
+                      await trpcClient.action.deleteTask.mutate({ taskId });
                       revalidate();
                       toast.success("Task Deleted");
                     }}

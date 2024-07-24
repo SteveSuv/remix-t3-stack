@@ -3,10 +3,9 @@ import {
   type MetaFunction,
 } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { trpc } from "~/common/trpc";
-import { LuIcon } from "~/components/LuIcon";
+import { trpcServer } from "~/common/trpc";
+import { RegisterButton } from "~/components/RegisterButton";
 import { Title } from "~/components/Title";
-import { User } from "lucide-react";
 
 export const meta: MetaFunction = () => {
   return [{ title: "remix-t3-stack" }];
@@ -14,20 +13,11 @@ export const meta: MetaFunction = () => {
 
 // server loader just for ssr
 export const loader = defineLoader(async (args) => {
-  const { userList } = await trpc(args.request).loader.getUserList.query();
+  const { userList } = await trpcServer(
+    args.request,
+  ).loader.getUserList.query();
   return { userList };
 });
-
-const RegisterButton = () => {
-  return (
-    <Link to="/register">
-      <button className="btn">
-        <LuIcon icon={User} />
-        Register New Account
-      </button>
-    </Link>
-  );
-};
 
 const PageHome = () => {
   const { userList } = useLoaderData<typeof loader>();

@@ -1,6 +1,6 @@
 import { useNavigate, useRevalidator } from "@remix-run/react";
 import { z } from "zod";
-import { trpc } from "~/common/trpc";
+import { trpcClient } from "~/common/trpc";
 import toast from "react-hot-toast";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { MetaFunction } from "@remix-run/node";
@@ -9,7 +9,8 @@ import { clsx } from "~/common/clsx";
 import { TRPCClientError } from "@trpc/client";
 import { Title } from "~/components/Title";
 import { LuIcon } from "~/components/LuIcon";
-import { LogIn, ChevronLeft } from "lucide-react";
+import { LogIn } from "lucide-react";
+import { BackButton } from "~/components/BackButton";
 
 export const meta: MetaFunction = () => {
   return [{ title: "login account | remix-t3-stack" }];
@@ -29,15 +30,7 @@ const PageLogin = () => {
     return (
       <>
         <Title>Welcome {myUserInfo?.username}, You Have Already Login</Title>
-        <button
-          className="btn"
-          onClick={() => {
-            nav(-1);
-          }}
-        >
-          <LuIcon icon={ChevronLeft} />
-          Go Back
-        </button>
+        <BackButton />
       </>
     );
   }
@@ -50,7 +43,7 @@ const PageLogin = () => {
         autoComplete="off"
         onSubmit={form.handleSubmit(async (data) => {
           try {
-            const { userId } = await trpc().action.login.mutate(data);
+            const { userId } = await trpcClient.action.login.mutate(data);
 
             if (userId) {
               form.reset();

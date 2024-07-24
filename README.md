@@ -1,14 +1,14 @@
 # remix-t3-stack
 
-a full-stack TodoList example use `remix-t3-stack`, aims to bring better DX to react developers.
+A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to react developers.
 
 # features
 
 - end-to-end type safe by `trpc`
-- get userinfo anywhere by `useMyUserInfo`
+- get `myUserInfo` anywhere by `useMyUserInfo`
 - type safe form with `zod` by `useZodForm`
-- no need to export `action`, just call `trpc` to mutate anywhere
-- request with permission controll by `middleware`
+- no need to export `action` in routes, just call `trpcClient.action` to mutate anywhere
+- request with permission controll by `trpc middlewares`
 - deploy to `docker` or `vercel`
 
 # stack
@@ -29,7 +29,7 @@ a full-stack TodoList example use `remix-t3-stack`, aims to bring better DX to r
 
 # how to dev
 
-1. Clone this repository
+1. clone this repository
 
 ```
 git clone git@github.com:SteveSuv/remix-t3-stack.git
