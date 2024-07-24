@@ -1,9 +1,9 @@
-import { JWT_KEY } from "~/common/constant";
+import { JWT_KEY } from "~/common/constants";
 import jwt from "jsonwebtoken";
 import { db } from "./db";
 import { Cookies } from "./cookies";
 
-export type IUserInfo = {
+export type IMyUserInfo = {
   id: string;
   username: string;
 } | null;

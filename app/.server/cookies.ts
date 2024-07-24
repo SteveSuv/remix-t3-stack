@@ -1,21 +1,18 @@
-import cookie, { CookieSerializeOptions } from "cookie";
+import cookie, {
+  type CookieParseOptions,
+  type CookieSerializeOptions,
+} from "cookie";
+import { IS_PROD, COOKIE_MAX_AGE } from "~/common/constants";
 
-const getCookiesString = (req: Request) => {
+const getCookie = (
+  req: Request,
+  name: string,
+  options?: CookieParseOptions,
+) => {
   const cookieHeader = req.headers.get("Cookie");
-  return cookieHeader || "";
-};
-
-const getCookies = (req: Request) => {
-  const cookieHeader = req.headers.get("Cookie");
-  if (!cookieHeader) return {};
-  return cookie.parse(cookieHeader);
-};
-
-const getCookie = (req: Request, name: string) => {
-  const cookieHeader = req.headers.get("Cookie");
-  if (!cookieHeader) return;
-  const cookies = cookie.parse(cookieHeader);
-  return cookies[name];
+  if (!cookieHeader) return "";
+  const cookies = cookie.parse(cookieHeader, options);
+  return cookies[name] as string;
 };
 
 const setCookie = (
@@ -24,7 +21,17 @@ const setCookie = (
   value: string,
   options?: CookieSerializeOptions,
 ) => {
-  resHeaders.set("Set-Cookie", cookie.serialize(name, value, options));
+  resHeaders.set(
+    "Set-Cookie",
+    cookie.serialize(name, value, {
+      maxAge: COOKIE_MAX_AGE,
+      httpOnly: true,
+      secure: IS_PROD,
+      path: "/",
+      sameSite: "lax",
+      ...options,
+    }),
+  );
 };
 
 const deleteCookie = (
@@ -32,12 +39,20 @@ const deleteCookie = (
   name: string,
   options?: CookieSerializeOptions,
 ) => {
-  resHeaders.set("Set-Cookie", cookie.serialize(name, "", options));
+  resHeaders.set(
+    "Set-Cookie",
+    cookie.serialize(name, "", {
+      maxAge: 0,
+      httpOnly: true,
+      secure: IS_PROD,
+      path: "/",
+      sameSite: "lax",
+      ...options,
+    }),
+  );
 };
 
 export const Cookies = {
-  string: getCookiesString,
-  getAll: getCookies,
   get: getCookie,
   set: setCookie,
   delete: deleteCookie,

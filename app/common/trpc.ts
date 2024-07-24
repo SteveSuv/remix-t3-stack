@@ -1,11 +1,11 @@
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import SuperJSON from "superjson";
 import { AppRouter } from "~/.server/router";
-import { isProd } from "./constant";
+import { IS_PROD } from "./constants";
 
 const devUrl = "http://localhost:3000/trpc";
 const prodUrl = "http://localhost:3000/trpc"; // change to your real domain when deploy to prod
-const trpcUrl = isProd ? prodUrl : devUrl;
+const trpcUrl = IS_PROD ? prodUrl : devUrl;
 
 export const trpc = (request?: Request) => {
   return createTRPCProxyClient<AppRouter>({

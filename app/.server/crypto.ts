@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+import crypto from "crypto";
 
 export const encrypt = (text: string) => {
   return crypto

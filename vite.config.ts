@@ -6,13 +6,20 @@ import { installGlobals } from "@remix-run/node";
 installGlobals({ nativeFetch: true });
 
 export default defineConfig({
+  server: { port: 3000 },
   plugins: [
     remix({
       future: {
+        v3_fetcherPersist: true,
+        v3_relativeSplatPath: true,
+        v3_throwAbortReason: true,
         unstable_singleFetch: true,
+        unstable_fogOfWar: true,
       },
     }),
     tsconfigPaths(),
   ],
-  server: { port: 3000 },
+  define: {
+    "process.env": process.env,
+  },
 });

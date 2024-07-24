@@ -18,14 +18,16 @@ export const loader = defineLoader(async (args) => {
   return { userList };
 });
 
-const RegisterButton = () => (
-  <Link to="/register">
-    <button className="btn">
-      <LuIcon icon={User} />
-      Register New Account
-    </button>
-  </Link>
-);
+const RegisterButton = () => {
+  return (
+    <Link to="/register">
+      <button className="btn">
+        <LuIcon icon={User} />
+        Register New Account
+      </button>
+    </Link>
+  );
+};
 
 const PageHome = () => {
   const { userList } = useLoaderData<typeof loader>();
