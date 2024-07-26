@@ -28,7 +28,6 @@ export const getMyUserInfo = async (request: Request) => {
 
     return myUserInfo;
   } catch (error) {
-    console.error(error);
     return null;
   }
 };
