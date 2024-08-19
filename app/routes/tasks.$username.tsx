@@ -30,7 +30,7 @@ export const meta = ({ params, data }: MetaArgs_SingleFetch<typeof loader>) => {
   const unDoneTasksLength = myTaskList?.filter((e) => !e.done).length || 0;
   return [
     {
-      title: `(${unDoneTasksLength}) ${username}'s Tasks | remix-t3-stack`,
+      title: `${unDoneTasksLength ? `(${unDoneTasksLength}) ` : ""}${username}'s Tasks | remix-t3-stack`,
     },
   ];
 };
