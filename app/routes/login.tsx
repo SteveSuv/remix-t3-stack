@@ -1,30 +1,22 @@
-import { useNavigate, useRevalidator } from "@remix-run/react";
-import { z } from "zod";
-import { trpcClient } from "~/common/trpc";
-import toast from "react-hot-toast";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { MetaFunction } from "@remix-run/node";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
-import { TRPCClientError } from "@trpc/client";
 import { Title } from "~/components/Title";
 import { LuIcon } from "~/components/LuIcon";
 import { LogIn } from "lucide-react";
 import { BackButton } from "~/components/BackButton";
+import { loginFormSchema } from "~/common/formSchema";
+import { useloginMutation } from "~/hooks/request/mutation/useLoginMutation";
 
 export const meta: MetaFunction = () => {
   return [{ title: "login account | remix-t3-stack" }];
 };
 
-const PageLogin = () => {
+export default function PageLogin() {
   const { myUserInfo } = useMyUserInfo();
-  const { revalidate } = useRevalidator();
-  const nav = useNavigate();
-
-  const { form } = useZodForm({
-    username: z.string().min(3).max(20),
-    password: z.string().min(3).max(20),
-  });
+  const loginMutation = useloginMutation();
+  const { form } = useZodForm(loginFormSchema);
 
   if (myUserInfo) {
     return (
@@ -42,18 +34,8 @@ const PageLogin = () => {
         className="flex flex-col gap-2"
         autoComplete="off"
         onSubmit={form.handleSubmit(async (data) => {
-          try {
-            const { userId } = await trpcClient.action.login.mutate(data);
-
-            if (userId) {
-              form.reset();
-              toast.success("register successful");
-              revalidate();
-              nav("/", { replace: true });
-            }
-          } catch (error) {
-            toast.error((error as TRPCClientError<any>).message);
-          }
+          await loginMutation.mutateAsync(data);
+          form.reset();
         })}
       >
         <Controller
@@ -105,7 +87,7 @@ const PageLogin = () => {
         <button
           className="btn"
           type="submit"
-          disabled={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || loginMutation.isPending}
         >
           <LuIcon icon={LogIn} />
           Login
@@ -113,6 +95,4 @@ const PageLogin = () => {
       </form>
     </>
   );
-};
-
-export default PageLogin;
+}

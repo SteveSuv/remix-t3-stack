@@ -1,7 +1,3 @@
-import { useNavigate, useRevalidator } from "@remix-run/react";
-import { z } from "zod";
-import { trpcClient } from "~/common/trpc";
-import toast from "react-hot-toast";
 import { MetaFunction } from "@remix-run/node";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
@@ -10,20 +6,18 @@ import { LuIcon } from "~/components/LuIcon";
 import { User } from "lucide-react";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { BackButton } from "~/components/BackButton";
+import { registerFormSchema } from "~/common/formSchema";
+import { useRegisterMutation } from "~/hooks/request/mutation/useRegisterMutation";
 
 export const meta: MetaFunction = () => {
   return [{ title: "register account | remix-t3-stack" }];
 };
 
-const PageRegister = () => {
-  const { revalidate } = useRevalidator();
-  const nav = useNavigate();
+export default function PageRegister() {
   const { myUserInfo } = useMyUserInfo();
+  const registerMutation = useRegisterMutation();
 
-  const { form } = useZodForm({
-    username: z.string().min(3).max(20),
-    password: z.string().min(3).max(20),
-  });
+  const { form } = useZodForm(registerFormSchema);
 
   if (myUserInfo) {
     return (
@@ -41,13 +35,8 @@ const PageRegister = () => {
         className="flex flex-col gap-2"
         autoComplete="off"
         onSubmit={form.handleSubmit(async (data) => {
-          const { userId } = await trpcClient.action.register.mutate(data);
-          if (userId) {
-            form.reset();
-            toast.success("register successful");
-            revalidate();
-            nav("/login", { replace: true });
-          }
+          await registerMutation.mutateAsync(data);
+          form.reset();
         })}
       >
         <Controller
@@ -96,10 +85,33 @@ const PageRegister = () => {
           )}
         />
 
+        <Controller
+          name="password2"
+          defaultValue=""
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <>
+              <input
+                {...field}
+                className={clsx(
+                  "input input-bordered w-[300px]",
+                  fieldState.invalid && "input-error",
+                )}
+                type="password"
+                placeholder="password"
+                required
+                min={3}
+                max={20}
+              />
+              <small className="text-error">{fieldState.error?.message}</small>
+            </>
+          )}
+        />
+
         <button
           className="btn"
           type="submit"
-          disabled={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || registerMutation.isPending}
         >
           <LuIcon icon={User} />
           Register
@@ -107,6 +119,4 @@ const PageRegister = () => {
       </form>
     </>
   );
-};
-
-export default PageRegister;
+}

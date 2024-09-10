@@ -1,23 +1,18 @@
-import { unstable_defineLoader as defineLoader } from "@remix-run/node";
-import {
-  Link,
-  useLoaderData,
-  useParams,
-  useRevalidator,
-  MetaArgs_SingleFetch,
-} from "@remix-run/react";
-import toast from "react-hot-toast";
-import { z } from "zod";
-import { Controller, useZodForm } from "~/hooks/useZodForm";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { Link, useLoaderData, useParams, MetaArgs } from "@remix-run/react";
 import { clsx } from "~/common/clsx";
-import { trpcClient, trpcServer } from "~/common/trpc";
-import { Trash2Icon, Plus, LogIn } from "lucide-react";
+import { trpcServer } from "~/common/trpc";
+import { Trash2Icon, LogIn } from "lucide-react";
 import { Title } from "~/components/Title";
 import { LuIcon } from "~/components/LuIcon";
+import { useUnDoneTaskMutation } from "~/hooks/request/mutation/useUnDoneTaskMutation";
+import { useDoneTaskMutation } from "~/hooks/request/mutation/useDoneTaskMutation";
+import { useDeleteTaskMutation } from "~/hooks/request/mutation/useDeleteTaskMutation";
+import { AddTaskForm } from "~/components/AddTaskForm";
 
 type IParams = { username: string };
 
-export const meta = ({ params, data }: MetaArgs_SingleFetch<typeof loader>) => {
+export const meta = ({ params, data }: MetaArgs<typeof loader>) => {
   const { username } = params as IParams;
   const { myTaskList, isSelf, myUserInfo } = data || {};
   if (!myUserInfo) {
@@ -35,7 +30,7 @@ export const meta = ({ params, data }: MetaArgs_SingleFetch<typeof loader>) => {
   ];
 };
 
-export const loader = defineLoader(async (args) => {
+export const loader = async (args: LoaderFunctionArgs) => {
   const { username } = args.params as IParams;
   const { myUserInfo } = await trpcServer(
     args.request,
@@ -51,64 +46,14 @@ export const loader = defineLoader(async (args) => {
   }
 
   return { myTaskList: [], isSelf, myUserInfo };
-});
-
-const AddTaskForm = () => {
-  const { revalidate } = useRevalidator();
-
-  const { form } = useZodForm({
-    content: z.string().min(1).max(100),
-  });
-
-  return (
-    <form
-      className="flex flex-col gap-2"
-      autoComplete="off"
-      onSubmit={form.handleSubmit(async (data) => {
-        await trpcClient.action.addTask.mutate(data);
-        form.reset();
-        toast.success("add task successful");
-        revalidate();
-      })}
-    >
-      <Controller
-        name="content"
-        defaultValue=""
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <>
-            <input
-              {...field}
-              className={clsx(
-                "input input-bordered w-[300px]",
-                fieldState.invalid && "input-error",
-              )}
-              placeholder="input task content"
-              required
-              min={1}
-              max={100}
-            />
-            <small className="text-error">{fieldState.error?.message}</small>
-          </>
-        )}
-      />
-
-      <button
-        className="btn"
-        type="submit"
-        disabled={form.formState.isSubmitting}
-      >
-        <LuIcon icon={Plus} />
-        Add Task
-      </button>
-    </form>
-  );
 };
 
-const PageMyTasks = () => {
-  const { revalidate } = useRevalidator();
+export default function PageMyTasks() {
   const { myTaskList, isSelf, myUserInfo } = useLoaderData<typeof loader>();
   const { username } = useParams() as IParams;
+  const unDoneTaskMutation = useUnDoneTaskMutation();
+  const doneTaskMutation = useDoneTaskMutation();
+  const deleteTaskMutation = useDeleteTaskMutation();
 
   if (!myUserInfo) {
     return (
@@ -163,8 +108,8 @@ const PageMyTasks = () => {
             <label key={taskId}>
               <div
                 className={clsx(
-                  "flex cursor-pointer justify-between gap-4 rounded-lg border px-4 py-2 hover:bg-gray-100",
-                  done && "bg-gray-100 line-through opacity-60",
+                  "flex cursor-pointer justify-between gap-4 rounded-lg border border-base-300 px-4 py-2 hover:bg-base-200",
+                  done && "bg-base-200 line-through opacity-60",
                 )}
               >
                 <div className="flex items-center gap-2">
@@ -172,15 +117,14 @@ const PageMyTasks = () => {
                     type="checkbox"
                     className="checkbox-success checkbox"
                     defaultChecked={done}
+                    disabled={
+                      unDoneTaskMutation.isPending || doneTaskMutation.isPending
+                    }
                     onClick={async () => {
                       if (done) {
-                        await trpcClient.action.unDoneTask.mutate({ taskId });
-                        revalidate();
-                        toast.success("Task UnDone");
+                        await unDoneTaskMutation.mutateAsync({ taskId });
                       } else {
-                        await trpcClient.action.doneTask.mutate({ taskId });
-                        revalidate();
-                        toast.success("Task Done");
+                        await doneTaskMutation.mutateAsync({ taskId });
                       }
                     }}
                   />
@@ -198,11 +142,10 @@ const PageMyTasks = () => {
                   </div>
                   <button
                     className="btn btn-circle btn-ghost btn-sm"
+                    disabled={deleteTaskMutation.isPending}
                     onClick={async (e) => {
                       e.stopPropagation();
-                      await trpcClient.action.deleteTask.mutate({ taskId });
-                      revalidate();
-                      toast.success("Task Deleted");
+                      await deleteTaskMutation.mutateAsync({ taskId });
                     }}
                   >
                     <Trash2Icon
@@ -220,6 +163,4 @@ const PageMyTasks = () => {
       <AddTaskForm />
     </>
   );
-};
-
-export default PageMyTasks;
+}

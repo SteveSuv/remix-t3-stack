@@ -6,13 +6,11 @@ export const meta: MetaFunction = () => {
   return [{ title: "page not found | remix-t3-stack" }];
 };
 
-const PageNotFound = () => {
+export default function PageNotFound() {
   return (
     <>
       <Title>Page Not Found</Title>
       <BackButton />
     </>
   );
-};
-
-export default PageNotFound;
+}

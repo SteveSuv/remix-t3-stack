@@ -14,6 +14,7 @@ export const BackButton = (props: ComponentProps<"button">) => {
 
   return (
     <button
+      {...props}
       className={clsx("btn", props.className)}
       onClick={() => {
         nav(-1);

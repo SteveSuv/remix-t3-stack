@@ -1,14 +1,13 @@
 import { z } from "zod";
 import { db } from "~/.server/db";
-import { authProcedure } from "~/.server/trpc";
+import { p } from "~/.server/trpc";
 
-export const deleteTask = authProcedure
+export const deleteTask = p.auth
   .input(
     z.object({
       taskId: z.string(),
     }),
   )
-  .mutation(async (ctx) => {
-    const { taskId } = ctx.input;
+  .mutation(async ({ input: { taskId } }) => {
     await db.task.delete({ where: { id: taskId } });
   });

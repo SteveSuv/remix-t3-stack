@@ -15,6 +15,7 @@ export default defineConfig({
         v3_throwAbortReason: true,
         unstable_singleFetch: true,
         unstable_lazyRouteDiscovery: true,
+        unstable_optimizeDeps: true,
       },
     }),
     tsconfigPaths(),

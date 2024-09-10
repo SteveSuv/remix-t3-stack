@@ -29,6 +29,12 @@ const isUnAuthed = t.middleware(({ ctx, next }) => {
   return next();
 });
 
-export const publicProcedure = t.procedure;
-export const authProcedure = publicProcedure.use(isAuthed);
-export const unAuthProcedure = publicProcedure.use(isUnAuthed);
+const publicProcedure = t.procedure;
+const authProcedure = publicProcedure.use(isAuthed);
+const unAuthProcedure = publicProcedure.use(isUnAuthed);
+
+export const p = {
+  public: publicProcedure,
+  auth: authProcedure,
+  unAuth: unAuthProcedure,
+};

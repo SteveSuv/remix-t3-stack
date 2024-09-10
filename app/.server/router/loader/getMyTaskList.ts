@@ -1,16 +1,14 @@
 import { db } from "~/.server/db";
-import { publicProcedure } from "~/.server/trpc";
+import { p } from "~/.server/trpc";
 
-export const getMyTaskList = publicProcedure.query(async (ctx) => {
+export const getMyTaskList = p.public.query(async ({ ctx: { userId } }) => {
   // get userId from context
-  const { userId } = ctx.ctx;
+  if (!userId) return { myTaskList: [] };
 
-  const myTaskList = userId
-    ? await db.task.findMany({
-        where: { userId },
-        orderBy: [{ createAt: "desc" }],
-      })
-    : [];
+  const myTaskList = await db.task.findMany({
+    where: { userId },
+    orderBy: [{ createAt: "desc" }],
+  });
 
   return { myTaskList };
 });

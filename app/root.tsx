@@ -1,4 +1,4 @@
-import { unstable_defineLoader as defineLoader } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -8,17 +8,20 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { trpcServer } from "./common/trpc";
-import { Toaster } from "react-hot-toast";
 import { ReactNode } from "react";
 import { Header } from "./components/Header";
+import { ThemeProvider } from "next-themes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "./components/Toaster";
 import "./global.css";
 
-export const loader = defineLoader(async (args) => {
+export const loader = async (args: LoaderFunctionArgs) => {
   const { myUserInfo } = await trpcServer(
     args.request,
   ).loader.getMyUserInfo.query();
   return { myUserInfo };
-});
+};
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -38,16 +41,30 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const App = () => {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
+export default function App() {
   const { myUserInfo } = useLoaderData<typeof loader>();
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-center gap-4">
-      <Header />
-      <Outlet context={{ myUserInfo }} />
-      <Toaster />
-    </main>
+    <ThemeProvider attribute="data-theme" defaultTheme="light">
+      <QueryClientProvider client={queryClient}>
+        <main className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+          <Header />
+          <Outlet context={{ myUserInfo }} />
+        </main>
+        <Toaster />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
-};
-
-export default App;
+}

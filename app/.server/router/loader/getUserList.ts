@@ -1,7 +1,7 @@
 import { db } from "~/.server/db";
-import { publicProcedure } from "~/.server/trpc";
+import { p } from "~/.server/trpc";
 
-export const getUserList = publicProcedure.query(async () => {
+export const getUserList = p.public.query(async () => {
   const userList = await db.user.findMany({
     select: { id: true, username: true, createAt: true },
   });

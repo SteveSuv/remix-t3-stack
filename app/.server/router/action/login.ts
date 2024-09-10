@@ -1,22 +1,15 @@
 import jwt from "jsonwebtoken";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
 import { db } from "~/.server/db";
-import { unAuthProcedure } from "~/.server/trpc";
+import { p } from "~/.server/trpc";
 import { Cookies } from "~/.server/cookies";
 import { COOKIE_MAX_AGE, JWT_KEY } from "~/common/constants";
 import { encrypt } from "~/.server/crypto";
+import { loginFormSchema } from "~/common/formSchema";
 
-export const login = unAuthProcedure
-  .input(
-    z.object({
-      username: z.string().min(3).max(20),
-      password: z.string().min(3).max(20),
-    }),
-  )
-  .mutation(async (ctx) => {
-    const { username, password } = ctx.input;
-
+export const login = p.unAuth
+  .input(loginFormSchema)
+  .mutation(async ({ ctx: { resHeaders }, input: { username, password } }) => {
     const user = await db.user.findFirst({
       where: { username },
     });
@@ -42,9 +35,5 @@ export const login = unAuthProcedure
       expiresIn: COOKIE_MAX_AGE,
     });
 
-    const referer = ctx.ctx.req.referrer || "/";
-
-    Cookies.set(ctx.ctx.resHeaders, JWT_KEY, jwtToken);
-
-    return { userId: user.id, referer };
+    Cookies.set(resHeaders, JWT_KEY, jwtToken);
   });

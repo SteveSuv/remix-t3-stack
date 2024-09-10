@@ -1,18 +1,12 @@
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
 import { encrypt } from "~/.server/crypto";
 import { db } from "~/.server/db";
-import { unAuthProcedure } from "~/.server/trpc";
+import { p } from "~/.server/trpc";
+import { registerFormSchema } from "~/common/formSchema";
 
-export const register = unAuthProcedure
-  .input(
-    z.object({
-      username: z.string().min(3).max(20),
-      password: z.string().min(3).max(20),
-    }),
-  )
-  .mutation(async (ctx) => {
-    const { username, password } = ctx.input;
+export const register = p.unAuth
+  .input(registerFormSchema)
+  .mutation(async ({ input: { username, password } }) => {
     const user = await db.user.findUnique({ where: { username } });
 
     // if username exist, throw error
@@ -24,9 +18,7 @@ export const register = unAuthProcedure
     }
 
     // if user not exist, create user
-    const newUser = await db.user.create({
+    await db.user.create({
       data: { username, password: encrypt(password) },
     });
-
-    return { userId: newUser.id };
   });
