@@ -10,19 +10,19 @@ export const Toaster = () => {
         success: {
           icon: <LuIcon icon={CheckCircle} className="ml-2" />,
           style: {
-            background: 'green',
+            background: "green",
           },
         },
         error: {
           icon: <LuIcon icon={CircleAlert} className="ml-2" />,
           style: {
-            background: 'red',
+            background: "red",
           },
         },
         icon: <LuIcon icon={Bell} className="ml-2" />,
         style: {
-          background: 'blue',
-          color: 'white',
+          background: "blue",
+          color: "white",
           borderRadius: 100,
           display: "flex",
           justifyContent: "center",

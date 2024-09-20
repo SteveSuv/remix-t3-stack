@@ -3,6 +3,7 @@
 A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to react developers.
 
 # features
+
 - end-to-end type safe by `trpc`
 - get `myUserInfo` anywhere by `useMyUserInfo`
 - type safe form with `zod` by `useZodForm`
@@ -10,6 +11,7 @@ A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to
 - request with permission controll by `trpc middlewares`
 - deploy to `docker` or `vercel`
 - support dark mode by `useAppTheme`
+- use `prisma` to keep type safe with db
 - toast request error automatically
 - always use latest remix features
 
