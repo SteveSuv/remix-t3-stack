@@ -24,3 +24,10 @@ export default defineConfig({
     "process.env": process.env,
   },
 });
+
+declare module "@remix-run/node" {
+  // or cloudflare, deno, etc.
+  interface Future {
+    unstable_singleFetch: true;
+  }
+}

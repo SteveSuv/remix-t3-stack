@@ -5,9 +5,3 @@ namespace NodeJS {
     CRYPTO_SECRET: string;
   }
 }
-
-declare module "@remix-run/node" {
-  interface Future {
-    unstable_singleFetch: true;
-  }
-}
