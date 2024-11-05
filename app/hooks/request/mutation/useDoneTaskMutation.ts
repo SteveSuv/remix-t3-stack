@@ -13,7 +13,7 @@ export const useDoneTaskMutation = () => {
       return trpcClient.action.doneTask.mutate(data);
     },
     onSuccess() {
-      toast.success("Task Done");
+      toast.success("task done");
       revalidate();
     },
     onError: OnTRPCError,

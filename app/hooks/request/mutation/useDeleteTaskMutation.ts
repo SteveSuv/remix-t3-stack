@@ -13,7 +13,7 @@ export const useDeleteTaskMutation = () => {
       return trpcClient.action.deleteTask.mutate(data);
     },
     onSuccess() {
-      toast.success("Task Deleted");
+      toast.success("task deleted");
       revalidate();
     },
     onError: OnTRPCError,

@@ -5,6 +5,7 @@ const usernameSchema = z
   .string()
   .min(3, "username length cannot be less than 3 characters")
   .max(20, "username length cannot be more than 20 characters");
+
 const passwordSchema = z
   .string()
   .min(3, "password length cannot be less than 3 characters")

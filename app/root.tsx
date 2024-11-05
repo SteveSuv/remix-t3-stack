@@ -25,7 +25,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
