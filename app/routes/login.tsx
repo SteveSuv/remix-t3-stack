@@ -1,5 +1,4 @@
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
-import { MetaFunction } from "@remix-run/node";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
 import { Title } from "~/components/Title";
@@ -8,8 +7,9 @@ import { LogIn } from "lucide-react";
 import { BackButton } from "~/components/BackButton";
 import { loginFormSchema } from "~/common/formSchema";
 import { useloginMutation } from "~/hooks/request/mutation/useLoginMutation";
+import { Route } from "./+types/login";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [{ title: "login account | remix-t3-stack" }];
 };
 

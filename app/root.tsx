@@ -1,12 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { trpcServer } from "./common/trpc";
 import { ReactNode } from "react";
 import { Header } from "./components/Header";
@@ -14,12 +6,15 @@ import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "./components/Toaster";
-import "./global.css";
+import { Route } from "./+types/root";
+import stylesheet from "./global.css?url";
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const { myUserInfo } = await trpcServer(
-    args.request,
-  ).loader.getMyUserInfo.query();
+export const links: Route.LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+];
+
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const { myUserInfo } = await trpcServer(request).loader.getMyUserInfo.query();
   return { myUserInfo };
 };
 
@@ -52,9 +47,9 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function App() {
-  const { myUserInfo } = useLoaderData<typeof loader>();
-
+export default function App({
+  loaderData: { myUserInfo },
+}: Route.ComponentProps) {
   return (
     <ThemeProvider attribute="data-theme" defaultTheme="light">
       <QueryClientProvider client={queryClient}>

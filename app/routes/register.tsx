@@ -1,4 +1,3 @@
-import { MetaFunction } from "@remix-run/node";
 import { Controller, useZodForm } from "~/hooks/useZodForm";
 import { clsx } from "~/common/clsx";
 import { Title } from "~/components/Title";
@@ -8,8 +7,9 @@ import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { BackButton } from "~/components/BackButton";
 import { registerFormSchema } from "~/common/formSchema";
 import { useRegisterMutation } from "~/hooks/request/mutation/useRegisterMutation";
+import { Route } from "./+types/register";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [{ title: "register account | remix-t3-stack" }];
 };
 

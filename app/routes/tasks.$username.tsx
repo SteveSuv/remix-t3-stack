@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData, useParams, MetaArgs } from "@remix-run/react";
+import { Link } from "react-router";
 import { clsx } from "~/common/clsx";
 import { trpcServer } from "~/common/trpc";
 import { Trash2Icon, LogIn } from "lucide-react";
@@ -9,12 +8,12 @@ import { useUnDoneTaskMutation } from "~/hooks/request/mutation/useUnDoneTaskMut
 import { useDoneTaskMutation } from "~/hooks/request/mutation/useDoneTaskMutation";
 import { useDeleteTaskMutation } from "~/hooks/request/mutation/useDeleteTaskMutation";
 import { AddTaskForm } from "~/components/AddTaskForm";
+import { Route } from "./+types/tasks.$username";
 
-type IParams = { username: string };
-
-export const meta = ({ params, data }: MetaArgs<typeof loader>) => {
-  const { username } = params as IParams;
-  const { myTaskList, isSelf, myUserInfo } = data || {};
+export const meta: Route.MetaFunction = ({
+  params: { username },
+  data: { myTaskList, isSelf, myUserInfo },
+}) => {
   if (!myUserInfo) {
     return [{ title: "page need login | remix-t3-stack" }];
   }
@@ -30,27 +29,27 @@ export const meta = ({ params, data }: MetaArgs<typeof loader>) => {
   ];
 };
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const { username } = args.params as IParams;
-  const { myUserInfo } = await trpcServer(
-    args.request,
-  ).loader.getMyUserInfo.query();
+export const loader = async ({
+  params: { username },
+  request,
+}: Route.LoaderArgs) => {
+  const { myUserInfo } = await trpcServer(request).loader.getMyUserInfo.query();
 
   const isSelf = !!myUserInfo && username === myUserInfo.username;
 
   if (isSelf) {
-    const { myTaskList } = await trpcServer(
-      args.request,
-    ).loader.getMyTaskList.query();
+    const { myTaskList } =
+      await trpcServer(request).loader.getMyTaskList.query();
     return { myTaskList, isSelf, myUserInfo };
   }
 
   return { myTaskList: [], isSelf, myUserInfo };
 };
 
-export default function PageMyTasks() {
-  const { myTaskList, isSelf, myUserInfo } = useLoaderData<typeof loader>();
-  const { username } = useParams() as IParams;
+export default function PageMyTasks({
+  params: { username },
+  loaderData: { myTaskList, isSelf, myUserInfo },
+}: Route.ComponentProps) {
   const unDoneTaskMutation = useUnDoneTaskMutation();
   const doneTaskMutation = useDoneTaskMutation();
   const deleteTaskMutation = useDeleteTaskMutation();

@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { LuIcon } from "./LuIcon";
 import { User } from "lucide-react";
 

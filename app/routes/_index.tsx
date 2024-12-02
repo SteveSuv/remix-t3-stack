@@ -1,24 +1,22 @@
-import { LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link } from "react-router";
 import { trpcServer } from "~/common/trpc";
 import { RegisterButton } from "~/components/RegisterButton";
 import { Title } from "~/components/Title";
+import { Route } from "./+types/_index";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [{ title: "remix-t3-stack" }];
 };
 
 // server loader just for ssr
-export const loader = async (args: LoaderFunctionArgs) => {
-  const { userList } = await trpcServer(
-    args.request,
-  ).loader.getUserList.query();
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const { userList } = await trpcServer(request).loader.getUserList.query();
   return { userList };
 };
 
-export default function PageHome() {
-  const { userList } = useLoaderData<typeof loader>();
-
+export default function PageHome({
+  loaderData: { userList },
+}: Route.ComponentProps) {
   if (!userList.length) {
     return (
       <>

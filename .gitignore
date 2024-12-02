@@ -1,6 +1,8 @@
+.DS_Store
+.react-router
+build
 node_modules
-/.cache
-/build
+*.tsbuildinfo
 prisma/dev.sqlite
 
 # Uncomment .env when deploy to production

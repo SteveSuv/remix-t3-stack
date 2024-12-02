@@ -1,4 +1,4 @@
-import { useRevalidator } from "@remix-run/react";
+import { useRevalidator } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { trpcClient } from "~/common/trpc";

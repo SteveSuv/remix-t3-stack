@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { Home, LogIn, LogOut, User } from "lucide-react";
 import { LuIcon } from "./LuIcon";

@@ -13,11 +13,11 @@ A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to
 - support dark mode by `useAppTheme`
 - use `prisma` to keep type safe with db
 - toast request error automatically
-- always use latest remix features
+- always use latest remix (react-router v7) features
 
 # stack
 
-- remix
+- remix (react-router v7)
 - vite
 - trpc
 - tailwindcss
@@ -77,3 +77,8 @@ pnpm deploy
 ```
 
 - deploy to vercel: follow this [guide](https://vercel.com/docs/frameworks/remix)
+
+# notice
+
+- remix v3 has been migrated to [react-router v7](https://remix.run/blog/react-router-v7)
+- do not upgrade vite to v6 until it's widely adopted
