@@ -4,9 +4,6 @@ import { RegisterButton } from "~/components/RegisterButton";
 import { Title } from "~/components/Title";
 import { Route } from "./+types/_index";
 
-export const meta: Route.MetaFunction = () => {
-  return [{ title: "remix-t3-stack" }];
-};
 
 // server loader just for ssr
 export const loader = async ({ request }: Route.LoaderArgs) => {
@@ -20,6 +17,7 @@ export default function PageHome({
   if (!userList.length) {
     return (
       <>
+        <title>Remix t3 Stack</title>
         <Title>No One User Yet</Title>
         <RegisterButton />
       </>

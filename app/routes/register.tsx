@@ -9,9 +9,6 @@ import { registerFormSchema } from "~/common/formSchema";
 import { useRegisterMutation } from "~/hooks/request/mutation/useRegisterMutation";
 import { Route } from "./+types/register";
 
-export const meta: Route.MetaFunction = () => {
-  return [{ title: "register account | remix-t3-stack" }];
-};
 
 export default function PageRegister() {
   const { myUserInfo } = useMyUserInfo();
@@ -22,6 +19,7 @@ export default function PageRegister() {
   if (myUserInfo) {
     return (
       <>
+        <title>Register Account</title>
         <Title>You Need To Logout Before You Register Account</Title>
         <BackButton />
       </>

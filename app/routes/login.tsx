@@ -9,10 +9,6 @@ import { loginFormSchema } from "~/common/formSchema";
 import { useloginMutation } from "~/hooks/request/mutation/useLoginMutation";
 import { Route } from "./+types/login";
 
-export const meta: Route.MetaFunction = () => {
-  return [{ title: "login account | remix-t3-stack" }];
-};
-
 export default function PageLogin() {
   const { myUserInfo } = useMyUserInfo();
   const loginMutation = useloginMutation();
@@ -21,6 +17,7 @@ export default function PageLogin() {
   if (myUserInfo) {
     return (
       <>
+        <title>Login Account</title>
         <Title>Welcome {myUserInfo?.username}, You Have Already Login</Title>
         <BackButton />
       </>

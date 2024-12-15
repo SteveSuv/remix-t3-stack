@@ -10,24 +10,7 @@ import { useDeleteTaskMutation } from "~/hooks/request/mutation/useDeleteTaskMut
 import { AddTaskForm } from "~/components/AddTaskForm";
 import { Route } from "./+types/tasks.$username";
 
-export const meta: Route.MetaFunction = ({
-  params: { username },
-  data: { myTaskList, isSelf, myUserInfo },
-}) => {
-  if (!myUserInfo) {
-    return [{ title: "page need login | remix-t3-stack" }];
-  }
-  if (!isSelf) {
-    return [{ title: "no view permission | remix-t3-stack" }];
-  }
 
-  const unDoneTasksLength = myTaskList?.filter((e) => !e.done).length || 0;
-  return [
-    {
-      title: `${unDoneTasksLength ? `(${unDoneTasksLength}) ` : ""}${username}'s Tasks | remix-t3-stack`,
-    },
-  ];
-};
 
 export const loader = async ({
   params: { username },
@@ -57,6 +40,8 @@ export default function PageMyTasks({
   if (!myUserInfo) {
     return (
       <>
+        <title>Login Required</title>
+
         <Title>Page Need Login</Title>
         <Link to="/login">
           <button className="btn">
@@ -71,6 +56,8 @@ export default function PageMyTasks({
   if (!isSelf) {
     return (
       <>
+        <title>No View Permission</title>
+
         <Title>
           No Permission To Access Todolist Of Other User ({username})
         </Title>
