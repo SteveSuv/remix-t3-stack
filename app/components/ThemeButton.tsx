@@ -14,7 +14,7 @@ export const ThemeButton = (props: ComponentProps<"button">) => {
       onClick={toggleTheme}
     >
       <LuIcon icon={isDarkMode ? Sun : Moon} />
-      {isDarkMode ? "Ligth" : "Dark"}
+      {isDarkMode ? "Light" : "Dark"}
     </button>
   );
 };
