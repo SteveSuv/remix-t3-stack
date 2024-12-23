@@ -91,8 +91,6 @@ export default function PageMyTasks({
   }
 
   const doneTaskList = myTaskList.filter((e) => !!e.done);
-  const unDoneTaskList = myTaskList.filter((e) => !e.done);
-  const sortedTaskList = [...unDoneTaskList, ...doneTaskList];
 
   return (
     <>
@@ -100,7 +98,7 @@ export default function PageMyTasks({
         Done ({doneTaskList.length}) / Tasks ({myTaskList.length})
       </Title>
       <div className="my-2 flex flex-col gap-4">
-        {sortedTaskList.map((task) => {
+        {myTaskList.map((task) => {
           const { id: taskId, content, done, createAt, updatedAt } = task;
 
           return (
