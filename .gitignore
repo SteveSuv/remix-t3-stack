@@ -3,6 +3,7 @@
 build
 node_modules
 *.tsbuildinfo
+.local
 prisma/dev.sqlite
 
 # Uncomment .env when deploy to production
