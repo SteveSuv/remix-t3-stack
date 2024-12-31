@@ -8,7 +8,7 @@ A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to
 - get `myUserInfo` anywhere by `useMyUserInfo`
 - type safe form with `zod` by `useZodForm`
 - no need to export `action` in routes, just call `trpcClient.action` to mutate anywhere
-- request with permission controll by `trpc middlewares`
+- request with permission control by `trpc middlewares`
 - deploy to `docker` or `vercel`
 - support dark mode by `useAppTheme`
 - use `prisma` to keep type safe with db
