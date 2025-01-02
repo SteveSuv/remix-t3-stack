@@ -2,6 +2,8 @@
 
 A full-stack todolist example using `remix-t3-stack`, aims to bring better DX to react developers.
 
+![image](https://github.com/user-attachments/assets/0129c74a-29f7-4ec0-9957-bd83dae79558)
+
 # features
 
 - end-to-end type safe by `trpc`
