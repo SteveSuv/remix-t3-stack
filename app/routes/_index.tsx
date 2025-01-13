@@ -29,7 +29,7 @@ export default function PageHome({
   return (
     <>
       <Title>User List ({userList.length})</Title>
-      <div className="my-2 flex flex-col gap-2">
+      <div className="my-2 flex max-h-[70vh] flex-col gap-2 overflow-scroll p-4">
         {userList.map(({ id, username, createAt }, index) => {
           return (
             <div key={id}>

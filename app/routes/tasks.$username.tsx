@@ -97,7 +97,7 @@ export default function PageMyTasks({
       <Title>
         Done ({doneTaskList.length}) / Tasks ({myTaskList.length})
       </Title>
-      <div className="my-2 flex flex-col gap-4">
+      <div className="my-2 flex max-h-[70vh] flex-col gap-4 overflow-scroll p-4">
         {myTaskList.map((task) => {
           const { id: taskId, content, done, createAt, updatedAt } = task;
 

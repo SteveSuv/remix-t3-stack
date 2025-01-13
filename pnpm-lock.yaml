@@ -8,26 +8,26 @@ importers:
   .:
     dependencies:
       "@hookform/resolvers":
-        specifier: ^3.9.1
-        version: 3.9.1(react-hook-form@7.54.2(react@19.0.0))
+        specifier: ^3.10.0
+        version: 3.10.0(react-hook-form@7.54.2(react@19.0.0))
       "@prisma/client":
-        specifier: 6.1.0
-        version: 6.1.0(prisma@6.1.0)
+        specifier: 6.2.1
+        version: 6.2.1(prisma@6.2.1)
       "@react-router/fs-routes":
         specifier: ^7.1.1
-        version: 7.1.1(@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)))(typescript@5.7.2)
+        version: 7.1.1(@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1)))(typescript@5.7.3)
       "@react-router/node":
         specifier: ^7.1.1
-        version: 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
+        version: 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
       "@react-router/serve":
         specifier: ^7.1.1
-        version: 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
+        version: 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
       "@tanstack/react-query":
-        specifier: ^5.62.11
-        version: 5.62.11(react@19.0.0)
+        specifier: ^5.64.0
+        version: 5.64.0(react@19.0.0)
       "@tanstack/react-query-devtools":
-        specifier: ^5.62.11
-        version: 5.62.11(@tanstack/react-query@5.62.11(react@19.0.0))(react@19.0.0)
+        specifier: ^5.64.0
+        version: 5.64.0(@tanstack/react-query@5.64.0(react@19.0.0))(react@19.0.0)
       "@trpc/client":
         specifier: ^10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -41,8 +41,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       isbot:
-        specifier: ^5.1.19
-        version: 5.1.19
+        specifier: ^5.1.21
+        version: 5.1.21
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -79,7 +79,7 @@ importers:
     devDependencies:
       "@react-router/dev":
         specifier: ^7.1.1
-        version: 7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1))
+        version: 7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1))
       "@types/jsonwebtoken":
         specifier: ^9.0.7
         version: 9.0.7
@@ -87,11 +87,11 @@ importers:
         specifier: ^22
         version: 22.10.1
       "@types/react":
-        specifier: ^19.0.2
-        version: 19.0.2
+        specifier: ^19.0.6
+        version: 19.0.6
       "@types/react-dom":
-        specifier: ^19.0.2
-        version: 19.0.2(@types/react@19.0.2)
+        specifier: ^19.0.3
+        version: 19.0.3(@types/react@19.0.6)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -108,20 +108,20 @@ importers:
         specifier: ^0.6.9
         version: 0.6.9(prettier@3.4.2)
       prisma:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.2.1
+        version: 6.2.1
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
       typescript:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^5.7.3
+        version: 5.7.3
       vite:
         specifier: ^5.4.11
         version: 5.4.11(@types/node@22.10.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1))
+        version: 5.1.4(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1))
 
 packages:
   "@alloc/quick-lru@5.2.0":
@@ -567,10 +567,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  "@hookform/resolvers@3.9.1":
+  "@hookform/resolvers@3.10.0":
     resolution:
       {
-        integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==,
+        integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==,
       }
     peerDependencies:
       react-hook-form: ^7.0.0
@@ -670,10 +670,10 @@ packages:
       }
     engines: { node: ">=14" }
 
-  "@prisma/client@6.1.0":
+  "@prisma/client@6.2.1":
     resolution:
       {
-        integrity: sha512-AbQYc5+EJKm1Ydfq3KxwcGiy7wIbm4/QbjCKWWoNROtvy7d6a3gmAGkKjK0iUCzh+rHV8xDhD5Cge8ke/kiy5Q==,
+        integrity: sha512-msKY2iRLISN8t5X0Tj7hU0UWet1u0KuxSPHWuf3IRkB4J95mCvGpyQBfQ6ufcmvKNOMQSq90O2iUmJEN2e5fiA==,
       }
     engines: { node: ">=18.18" }
     peerDependencies:
@@ -682,34 +682,34 @@ packages:
       prisma:
         optional: true
 
-  "@prisma/debug@6.1.0":
+  "@prisma/debug@6.2.1":
     resolution:
       {
-        integrity: sha512-0himsvcM4DGBTtvXkd2Tggv6sl2JyUYLzEGXXleFY+7Kp6rZeSS3hiTW9mwtUlXrwYbJP6pwlVNB7jYElrjWUg==,
+        integrity: sha512-0KItvt39CmQxWkEw6oW+RQMD6RZ43SJWgEUnzxN8VC9ixMysa7MzZCZf22LCK5DSooiLNf8vM3LHZm/I/Ni7bQ==,
       }
 
-  "@prisma/engines-version@6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959":
+  "@prisma/engines-version@6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69":
     resolution:
       {
-        integrity: sha512-PdJqmYM2Fd8K0weOOtQThWylwjsDlTig+8Pcg47/jszMuLL9iLIaygC3cjWJLda69siRW4STlCTMSgOjZzvKPQ==,
+        integrity: sha512-7tw1qs/9GWSX6qbZs4He09TOTg1ff3gYsB3ubaVNN0Pp1zLm9NC5C5MZShtkz7TyQjx7blhpknB7HwEhlG+PrQ==,
       }
 
-  "@prisma/engines@6.1.0":
+  "@prisma/engines@6.2.1":
     resolution:
       {
-        integrity: sha512-GnYJbCiep3Vyr1P/415ReYrgJUjP79fBNc1wCo7NP6Eia0CzL2Ot9vK7Infczv3oK7JLrCcawOSAxFxNFsAERQ==,
+        integrity: sha512-lTBNLJBCxVT9iP5I7Mn6GlwqAxTpS5qMERrhebkUhtXpGVkBNd/jHnNJBZQW4kGDCKaQg/r2vlJYkzOHnAb7ZQ==,
       }
 
-  "@prisma/fetch-engine@6.1.0":
+  "@prisma/fetch-engine@6.2.1":
     resolution:
       {
-        integrity: sha512-asdFi7TvPlEZ8CzSZ/+Du5wZ27q6OJbRSXh+S8ISZguu+S9KtS/gP7NeXceZyb1Jv1SM1S5YfiCv+STDsG6rrg==,
+        integrity: sha512-OO7O9d6Mrx2F9i+Gu1LW+DGXXyUFkP7OE5aj9iBfA/2jjDXEJjqa9X0ZmM9NZNo8Uo7ql6zKm6yjDcbAcRrw1A==,
       }
 
-  "@prisma/get-platform@6.1.0":
+  "@prisma/get-platform@6.2.1":
     resolution:
       {
-        integrity: sha512-ia8bNjboBoHkmKGGaWtqtlgQOhCi7+f85aOkPJKgNwWvYrT6l78KgojLekE8zMhVk0R9lWcifV0Pf8l3/15V0Q==,
+        integrity: sha512-zp53yvroPl5m5/gXYLz7tGCNG33bhG+JYCm74ohxOq1pPnrL47VQYFfF3RbTZ7TzGWCrR3EtoiYMywUBw7UK6Q==,
       }
 
   "@react-router/dev@7.1.1":
@@ -936,31 +936,31 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  "@tanstack/query-core@5.62.9":
+  "@tanstack/query-core@5.64.0":
     resolution:
       {
-        integrity: sha512-lwePd8hNYhyQ4nM/iRQ+Wz2cDtspGeZZHFZmCzHJ7mfKXt+9S301fULiY2IR2byJYY6Z03T427E5PoVfMexHjw==,
+        integrity: sha512-/MPJt/AaaMzdWJZTafgMyYhEX/lGjQrNz8+NDQSk8fNoU5PHqh05FhQaBrEQafW2PeBHsRbefEf//qKMiSAbQQ==,
       }
 
-  "@tanstack/query-devtools@5.62.9":
+  "@tanstack/query-devtools@5.62.16":
     resolution:
       {
-        integrity: sha512-b1NZzDLVf6laJsB1Cfm3ieuYzM+WqoO8qpm9v+3Etwd+Ph4zkhUMiT+wcWj5AhEPsXiRodKYiiW048VDNdBxNg==,
+        integrity: sha512-3ff6UBJr0H3nIhfLSl9911rvKqXf0u4B58jl0uYdDWLqPk9pCvYIbxC35cGxK2+8INl4IaFVUHb/IdgWrNkg3Q==,
       }
 
-  "@tanstack/react-query-devtools@5.62.11":
+  "@tanstack/react-query-devtools@5.64.0":
     resolution:
       {
-        integrity: sha512-i0vKgdM4ORRzqduz7UeUF52UhLrvRp4sNY/DnLsd5NqNyiKct3a0bLQMWE2fqjF5tEExQ0d0xY60ILXW/T62xA==,
+        integrity: sha512-XORJjlbcBwPJaNbWBfZudaVVMi5TtlN1lYkHYU71hlG2c/jYpceO2yfAhZfgeyTNtqmTJ7jXOitgoGqtunsBAA==,
       }
     peerDependencies:
-      "@tanstack/react-query": ^5.62.11
+      "@tanstack/react-query": ^5.64.0
       react: ^18 || ^19
 
-  "@tanstack/react-query@5.62.11":
+  "@tanstack/react-query@5.64.0":
     resolution:
       {
-        integrity: sha512-Xb1nw0cYMdtFmwkvH9+y5yYFhXvLRCnXoqlzSw7UkqtCVFq3cG8q+rHZ2Yz1XrC+/ysUaTqbLKJqk95mCgC1oQ==,
+        integrity: sha512-tBMzlROROUcTDMpDt1NC3n9ndKnJHPB3RCpa6Bf9f31TFvqhLz879x8jldtKU+6IwMSw1Pn4K1AKA+2SYyA6TA==,
       }
     peerDependencies:
       react: ^18 || ^19
@@ -1003,18 +1003,18 @@ packages:
         integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==,
       }
 
-  "@types/react-dom@19.0.2":
+  "@types/react-dom@19.0.3":
     resolution:
       {
-        integrity: sha512-c1s+7TKFaDRRxr1TxccIX2u7sfCnc3RxkVyBIUA2lCpyqCF+QoAwQ/CBg7bsMdVwP120HEH143VQezKtef5nCg==,
+        integrity: sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==,
       }
     peerDependencies:
       "@types/react": ^19.0.0
 
-  "@types/react@19.0.2":
+  "@types/react@19.0.6":
     resolution:
       {
-        integrity: sha512-USU8ZI/xyKJwFTpjSVIrSeHBVAGagkHQKPNbxeWwql/vDmnTIBgx+TJnhFnj1NXgz8XfprU0egV2dROLGpsBEg==,
+        integrity: sha512-gIlMztcTeDgXCUj0vCBOqEuSEhX//63fW9SZtCJ+agxoQTOklwDfiEMlTWn4mR/C/UK5VHlpwsCsOyf7/hc4lw==,
       }
 
   accepts@1.3.8:
@@ -1845,10 +1845,10 @@ packages:
         integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==,
       }
 
-  isbot@5.1.19:
+  isbot@5.1.21:
     resolution:
       {
-        integrity: sha512-8krWJBGKC3lVymkncvmBTpIEWMD5kKmjAvkM3/Xh6veE0bAydwgSNrI5h493DGrG2UNJCy0HuHpNPSKRy0dBJA==,
+        integrity: sha512-0q3naRVpENL0ReKHeNcwn/G7BDynp0DqZUckKyFtM9+hmpnPqgm8+8wbjiVZ0XNhq1wPQV28/Pb8Snh5adeUHA==,
       }
     engines: { node: ">=18" }
 
@@ -2469,10 +2469,10 @@ packages:
     engines: { node: ">=14" }
     hasBin: true
 
-  prisma@6.1.0:
+  prisma@6.2.1:
     resolution:
       {
-        integrity: sha512-aFI3Yi+ApUxkwCJJwyQSwpyzUX7YX3ihzuHNHOyv4GJg3X5tQsmRaJEnZ+ZyfHpMtnyahhmXVfbTZ+lS8ZtfKw==,
+        integrity: sha512-hhyM0H13pQleQ+br4CkzGizS5I0oInoeTw3JfLw1BRZduBSQxPILlJLwi+46wZzj9Je7ndyQEMGw/n5cN2fknA==,
       }
     engines: { node: ">=18.18" }
     hasBin: true
@@ -2967,10 +2967,10 @@ packages:
       }
     engines: { node: ">= 0.6" }
 
-  typescript@5.7.2:
+  typescript@5.7.3:
     resolution:
       {
-        integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==,
+        integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==,
       }
     engines: { node: ">=14.17" }
     hasBin: true
@@ -3445,7 +3445,7 @@ snapshots:
   "@esbuild/win32-x64@0.21.5":
     optional: true
 
-  "@hookform/resolvers@3.9.1(react-hook-form@7.54.2(react@19.0.0))":
+  "@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@19.0.0))":
     dependencies:
       react-hook-form: 7.54.2(react@19.0.0)
 
@@ -3521,33 +3521,33 @@ snapshots:
   "@pkgjs/parseargs@0.11.0":
     optional: true
 
-  "@prisma/client@6.1.0(prisma@6.1.0)":
+  "@prisma/client@6.2.1(prisma@6.2.1)":
     optionalDependencies:
-      prisma: 6.1.0
+      prisma: 6.2.1
 
-  "@prisma/debug@6.1.0": {}
+  "@prisma/debug@6.2.1": {}
 
-  "@prisma/engines-version@6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959":
+  "@prisma/engines-version@6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69":
     {}
 
-  "@prisma/engines@6.1.0":
+  "@prisma/engines@6.2.1":
     dependencies:
-      "@prisma/debug": 6.1.0
-      "@prisma/engines-version": 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
-      "@prisma/fetch-engine": 6.1.0
-      "@prisma/get-platform": 6.1.0
+      "@prisma/debug": 6.2.1
+      "@prisma/engines-version": 6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69
+      "@prisma/fetch-engine": 6.2.1
+      "@prisma/get-platform": 6.2.1
 
-  "@prisma/fetch-engine@6.1.0":
+  "@prisma/fetch-engine@6.2.1":
     dependencies:
-      "@prisma/debug": 6.1.0
-      "@prisma/engines-version": 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
-      "@prisma/get-platform": 6.1.0
+      "@prisma/debug": 6.2.1
+      "@prisma/engines-version": 6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69
+      "@prisma/get-platform": 6.2.1
 
-  "@prisma/get-platform@6.1.0":
+  "@prisma/get-platform@6.2.1":
     dependencies:
-      "@prisma/debug": 6.1.0
+      "@prisma/debug": 6.2.1
 
-  "@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1))":
+  "@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1))":
     dependencies:
       "@babel/core": 7.26.0
       "@babel/generator": 7.26.2
@@ -3558,7 +3558,7 @@ snapshots:
       "@babel/traverse": 7.25.9
       "@babel/types": 7.26.0
       "@npmcli/package-json": 4.0.1
-      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
+      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
       arg: 5.0.2
       babel-dead-code-elimination: 1.0.6
       chokidar: 4.0.1
@@ -3577,12 +3577,12 @@ snapshots:
       react-router: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       semver: 7.6.3
       set-cookie-parser: 2.7.1
-      valibot: 0.41.0(typescript@5.7.2)
+      valibot: 0.41.0(typescript@5.7.3)
       vite: 5.4.11(@types/node@22.10.1)
       vite-node: 3.0.0-beta.2(@types/node@22.10.1)
     optionalDependencies:
-      "@react-router/serve": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
-      typescript: 5.7.2
+      "@react-router/serve": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
+      typescript: 5.7.3
     transitivePeerDependencies:
       - "@types/node"
       - babel-plugin-macros
@@ -3596,22 +3596,22 @@ snapshots:
       - supports-color
       - terser
 
-  "@react-router/express@7.1.1(express@4.21.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)":
+  "@react-router/express@7.1.1(express@4.21.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)":
     dependencies:
-      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
+      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
       express: 4.21.1
       react-router: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
-  "@react-router/fs-routes@7.1.1(@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)))(typescript@5.7.2)":
+  "@react-router/fs-routes@7.1.1(@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1)))(typescript@5.7.3)":
     dependencies:
-      "@react-router/dev": 7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1))
+      "@react-router/dev": 7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3))(@types/node@22.10.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1))
       minimatch: 9.0.5
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
-  "@react-router/node@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)":
+  "@react-router/node@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)":
     dependencies:
       "@mjackson/node-fetch-server": 0.2.0
       react-router: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -3619,12 +3619,12 @@ snapshots:
       stream-slice: 0.1.2
       undici: 6.21.0
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
-  "@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)":
+  "@react-router/serve@7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)":
     dependencies:
-      "@react-router/express": 7.1.1(express@4.21.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
-      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
+      "@react-router/express": 7.1.1(express@4.21.1)(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
+      "@react-router/node": 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.3)
       compression: 1.7.5
       express: 4.21.1
       get-port: 5.1.1
@@ -3689,19 +3689,19 @@ snapshots:
   "@rollup/rollup-win32-x64-msvc@4.28.0":
     optional: true
 
-  "@tanstack/query-core@5.62.9": {}
+  "@tanstack/query-core@5.64.0": {}
 
-  "@tanstack/query-devtools@5.62.9": {}
+  "@tanstack/query-devtools@5.62.16": {}
 
-  "@tanstack/react-query-devtools@5.62.11(@tanstack/react-query@5.62.11(react@19.0.0))(react@19.0.0)":
+  "@tanstack/react-query-devtools@5.64.0(@tanstack/react-query@5.64.0(react@19.0.0))(react@19.0.0)":
     dependencies:
-      "@tanstack/query-devtools": 5.62.9
-      "@tanstack/react-query": 5.62.11(react@19.0.0)
+      "@tanstack/query-devtools": 5.62.16
+      "@tanstack/react-query": 5.64.0(react@19.0.0)
       react: 19.0.0
 
-  "@tanstack/react-query@5.62.11(react@19.0.0)":
+  "@tanstack/react-query@5.64.0(react@19.0.0)":
     dependencies:
-      "@tanstack/query-core": 5.62.9
+      "@tanstack/query-core": 5.64.0
       react: 19.0.0
 
   "@trpc/client@10.45.2(@trpc/server@10.45.2)":
@@ -3722,11 +3722,11 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  "@types/react-dom@19.0.2(@types/react@19.0.2)":
+  "@types/react-dom@19.0.3(@types/react@19.0.6)":
     dependencies:
-      "@types/react": 19.0.2
+      "@types/react": 19.0.6
 
-  "@types/react@19.0.2":
+  "@types/react@19.0.6":
     dependencies:
       csstype: 3.1.3
 
@@ -4230,7 +4230,7 @@ snapshots:
 
   isarray@1.0.0: {}
 
-  isbot@5.1.19: {}
+  isbot@5.1.21: {}
 
   isexe@2.0.0: {}
 
@@ -4503,9 +4503,9 @@ snapshots:
 
   prettier@3.4.2: {}
 
-  prisma@6.1.0:
+  prisma@6.2.1:
     dependencies:
-      "@prisma/engines": 6.1.0
+      "@prisma/engines": 6.2.1
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -4825,9 +4825,9 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsconfck@3.1.4(typescript@5.7.2):
+  tsconfck@3.1.4(typescript@5.7.3):
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
   turbo-stream@2.4.0: {}
 
@@ -4836,7 +4836,7 @@ snapshots:
       media-typer: 0.3.0
       mime-types: 2.1.35
 
-  typescript@5.7.2: {}
+  typescript@5.7.3: {}
 
   undici-types@6.20.0: {}
 
@@ -4856,9 +4856,9 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  valibot@0.41.0(typescript@5.7.2):
+  valibot@0.41.0(typescript@5.7.3):
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
   validate-npm-package-license@3.0.4:
     dependencies:
@@ -4887,11 +4887,11 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.1.4(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)):
+  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@5.4.11(@types/node@22.10.1)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
-      tsconfck: 3.1.4(typescript@5.7.2)
+      tsconfck: 3.1.4(typescript@5.7.3)
     optionalDependencies:
       vite: 5.4.11(@types/node@22.10.1)
     transitivePeerDependencies:
