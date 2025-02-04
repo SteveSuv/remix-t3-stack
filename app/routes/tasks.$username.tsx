@@ -105,7 +105,7 @@ export default function PageMyTasks({
             <label key={taskId}>
               <div
                 className={clsx(
-                  "flex cursor-pointer justify-between gap-4 rounded-lg border border-base-300 px-4 py-2 hover:bg-base-200",
+                  "border-base-300 hover:bg-base-200 flex cursor-pointer justify-between gap-4 rounded-lg border px-4 py-2",
                   done && "bg-base-200 line-through opacity-60",
                 )}
               >

@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["lucide-react", "vite"]
+  "reject": []
 }

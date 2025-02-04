@@ -11,7 +11,7 @@ export const Header = () => {
   const logoutMutation = useLogoutMutation();
 
   return (
-    <div className="fixed left-0 top-0 flex w-screen items-center justify-between p-6">
+    <div className="fixed top-0 left-0 flex w-screen items-center justify-between p-6">
       <div className="flex items-center gap-2">
         <Link to="/">
           <button className="btn btn-sm">

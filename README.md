@@ -85,5 +85,4 @@ pnpm run deploy
 # notice
 
 - remix v3 has been migrated to [react-router v7](https://remix.run/blog/react-router-v7)
-- do not upgrade vite to v6 until it's widely adopted
 - a more complex project using `remix-t3-stack` is here: [remix-words-funny](https://github.com/SteveSuv/remix-words-funny)

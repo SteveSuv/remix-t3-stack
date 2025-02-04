@@ -34,7 +34,7 @@ export default function PageHome({
           return (
             <div key={id}>
               <Link to={`/tasks/${username}`}>
-                <div className="flex flex-col rounded-lg border border-base-300 px-4 py-2 transition-all hover:bg-base-200">
+                <div className="border-base-300 hover:bg-base-200 flex flex-col rounded-lg border px-4 py-2 transition-all">
                   <div className="text-lg">{username}</div>
                   <div className="text-sm font-light text-gray-400">
                     create at {new Date(createAt).toLocaleString()}
