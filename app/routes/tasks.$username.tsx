@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { href, Link } from "react-router";
 import { clsx } from "~/common/clsx";
 import { trpcServer } from "~/common/trpc";
 import { Trash2Icon, LogIn } from "lucide-react";
@@ -58,7 +58,7 @@ export default function PageMyTasks({
     return (
       <>
         <Title>Page Need Login</Title>
-        <Link to="/login">
+        <Link to={href("/login")}>
           <button className="btn">
             <LuIcon icon={LogIn} />
             Login
@@ -74,7 +74,7 @@ export default function PageMyTasks({
         <Title>
           No Permission To Access Todolist Of Other User ({username})
         </Title>
-        <Link to={`/tasks/${myUserInfo?.username}`}>
+        <Link to={href("/tasks/:username", { username: myUserInfo.username })}>
           <button className="btn">View My Tasks</button>
         </Link>
       </>

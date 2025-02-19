@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { href, Link } from "react-router";
 import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { Home, LogIn, LogOut, User } from "lucide-react";
 import { LuIcon } from "./LuIcon";
@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <div className="fixed top-0 left-0 flex w-screen items-center justify-between p-6">
       <div className="flex items-center gap-2">
-        <Link to="/">
+        <Link to={href("/")}>
           <button className="btn btn-sm">
             <LuIcon icon={Home} /> Home
           </button>
@@ -23,7 +23,9 @@ export const Header = () => {
       <div className="flex items-center gap-2">
         {myUserInfo ? (
           <div className="flex items-center gap-2">
-            <Link to={`/tasks/${myUserInfo.username}`}>
+            <Link
+              to={href("/tasks/:username", { username: myUserInfo.username })}
+            >
               <button className="btn btn-sm">
                 <LuIcon icon={User} />
                 {myUserInfo.username}
@@ -41,7 +43,7 @@ export const Header = () => {
             </button>
           </div>
         ) : (
-          <Link className="btn btn-sm" to="/login">
+          <Link className="btn btn-sm" to={href("/login")}>
             <LuIcon icon={LogIn} />
             Login
           </Link>
