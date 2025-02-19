@@ -7,11 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "./components/Toaster";
 import { Route } from "./+types/root";
-import stylesheet from "./global.css?url";
-
-export const links: Route.LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+import "./global.css";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { myUserInfo } = await trpcServer(request).loader.getMyUserInfo.query();

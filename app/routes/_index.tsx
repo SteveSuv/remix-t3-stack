@@ -29,8 +29,8 @@ export default function PageHome({
   return (
     <>
       <Title>User List ({userList.length})</Title>
-      <div className="my-2 flex max-h-[70vh] flex-col gap-2 overflow-scroll p-4">
-        {userList.map(({ id, username, createAt }, index) => {
+      <div className="border-base-200 mb-4 grid h-[70vh] grid-cols-4 gap-4 overflow-scroll border p-4 shadow-md">
+        {userList.map(({ id, username, createAt }) => {
           return (
             <div key={id}>
               <Link to={`/tasks/${username}`}>
