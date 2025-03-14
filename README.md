@@ -34,6 +34,7 @@ this is a full-stack todolist example using `remix-t3-stack`, aims to bring bett
 - next-themes
 - lucide-icons
 - zod
+- sqlite
 - docker
 - vercel
 
@@ -80,7 +81,7 @@ pnpm start
 pnpm run deploy
 ```
 
-- deploy to vercel: follow this [guide](https://vercel.com/docs/frameworks/remix)
+- deploy to vercel: follow this [guide](https://vercel.com/docs/frameworks/react-router)
 
 # notice
 
