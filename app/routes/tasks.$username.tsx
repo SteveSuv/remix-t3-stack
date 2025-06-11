@@ -9,11 +9,10 @@ import { useDoneTaskMutation } from "~/hooks/request/mutation/useDoneTaskMutatio
 import { useDeleteTaskMutation } from "~/hooks/request/mutation/useDeleteTaskMutation";
 import { AddTaskForm } from "~/components/AddTaskForm";
 import { Route } from "./+types/tasks.$username";
+import { Task } from "@prisma/client";
 
-export const meta: Route.MetaFunction = ({
-  params: { username },
-  data: { myTaskList, isSelf, myUserInfo },
-}) => {
+export const meta: Route.MetaFunction = ({ params: { username }, data }) => {
+  const { myTaskList, isSelf, myUserInfo } = data!;
   if (!myUserInfo) {
     return [{ title: "page need login | remix-t3-stack" }];
   }
@@ -37,13 +36,14 @@ export const loader = async ({
 
   const isSelf = !!myUserInfo && username === myUserInfo.username;
 
+  const myTaskList: Task[] = [];
   if (isSelf) {
-    const { myTaskList } =
+    const { myTaskList: _myTaskList } =
       await trpcServer(request).loader.getMyTaskList.query();
-    return { myTaskList, isSelf, myUserInfo };
+    myTaskList.push(...myTaskList);
   }
 
-  return { myTaskList: [], isSelf, myUserInfo };
+  return { myTaskList, isSelf, myUserInfo };
 };
 
 export default function PageMyTasks({
