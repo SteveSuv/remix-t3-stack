@@ -40,7 +40,7 @@ export const loader = async ({
   if (isSelf) {
     const { myTaskList: _myTaskList } =
       await trpcServer(request).loader.getMyTaskList.query();
-    myTaskList.push(...myTaskList);
+    myTaskList.push(..._myTaskList);
   }
 
   return { myTaskList, isSelf, myUserInfo };
