@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
-import { encrypt } from "~/.server/crypto";
+import { encrypt } from "~/.server/common/crypto";
+import { p } from "~/.server/common/trpc";
 import { db } from "~/.server/db";
-import { p } from "~/.server/trpc";
 import { registerFormSchema } from "~/common/formSchema";
 
 export const register = p.unAuth

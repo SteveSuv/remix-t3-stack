@@ -1,5 +1,5 @@
-import { Title } from "~/components/Title";
 import { BackButton } from "~/components/BackButton";
+import { Title } from "~/components/Title";
 import { Route } from "./+types/$";
 
 export const meta: Route.MetaFunction = () => {

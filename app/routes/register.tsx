@@ -1,12 +1,16 @@
-import { Controller, useZodForm } from "~/hooks/useZodForm";
-import { clsx } from "~/common/clsx";
-import { Title } from "~/components/Title";
-import { LuIcon } from "~/components/LuIcon";
+import { useMutation } from "@tanstack/react-query";
 import { User } from "lucide-react";
-import { useMyUserInfo } from "~/hooks/useMyUserInfo";
-import { BackButton } from "~/components/BackButton";
+import { Controller } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useRevalidator } from "react-router";
+import { clsx } from "~/common/clsx";
 import { registerFormSchema } from "~/common/formSchema";
-import { useRegisterMutation } from "~/hooks/request/mutation/useRegisterMutation";
+import { trpcClient } from "~/common/trpc";
+import { BackButton } from "~/components/BackButton";
+import { LuIcon } from "~/components/LuIcon";
+import { Title } from "~/components/Title";
+import { useMyUserInfo } from "~/hooks/useMyUserInfo";
+import { useZodForm } from "~/hooks/useZodForm";
 import { Route } from "./+types/register";
 
 export const meta: Route.MetaFunction = () => {
@@ -14,8 +18,16 @@ export const meta: Route.MetaFunction = () => {
 };
 
 export default function PageRegister() {
+  const { revalidate } = useRevalidator();
   const { myUserInfo } = useMyUserInfo();
-  const registerMutation = useRegisterMutation();
+  const registerMutation = useMutation(
+    trpcClient.action.register.mutationOptions({
+      onSuccess() {
+        toast.success("register successful");
+        revalidate();
+      },
+    }),
+  );
 
   const { form } = useZodForm(registerFormSchema);
 

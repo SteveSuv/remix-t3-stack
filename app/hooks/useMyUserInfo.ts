@@ -1,6 +1,6 @@
 import { useLoaderData, useOutletContext } from "react-router";
+import { IMyUserInfo } from "~/.server/common/auth";
 import { loader } from "~/root";
-import { IMyUserInfo } from "~/.server/auth";
 
 export const useMyUserInfo = () => {
   const ctx = useOutletContext<{ myUserInfo: IMyUserInfo } | null>();

@@ -1,15 +1,14 @@
-import { href, Link } from "react-router";
-import { clsx } from "~/common/clsx";
-import { trpcServer } from "~/common/trpc";
-import { Trash2Icon, LogIn } from "lucide-react";
-import { Title } from "~/components/Title";
-import { LuIcon } from "~/components/LuIcon";
-import { useUnDoneTaskMutation } from "~/hooks/request/mutation/useUnDoneTaskMutation";
-import { useDoneTaskMutation } from "~/hooks/request/mutation/useDoneTaskMutation";
-import { useDeleteTaskMutation } from "~/hooks/request/mutation/useDeleteTaskMutation";
-import { AddTaskForm } from "~/components/AddTaskForm";
-import { Route } from "./+types/tasks.$username";
 import { Task } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { LogIn, Trash2Icon } from "lucide-react";
+import toast from "react-hot-toast";
+import { href, Link, useRevalidator } from "react-router";
+import { clsx } from "~/common/clsx";
+import { trpcClient, trpcServer } from "~/common/trpc";
+import { AddTaskForm } from "~/components/AddTaskForm";
+import { LuIcon } from "~/components/LuIcon";
+import { Title } from "~/components/Title";
+import { Route } from "./+types/tasks.$username";
 
 export const meta: Route.MetaFunction = ({ params: { username }, data }) => {
   const { myTaskList, isSelf, myUserInfo } = data!;
@@ -50,9 +49,34 @@ export default function PageMyTasks({
   params: { username },
   loaderData: { myTaskList, isSelf, myUserInfo },
 }: Route.ComponentProps) {
-  const unDoneTaskMutation = useUnDoneTaskMutation();
-  const doneTaskMutation = useDoneTaskMutation();
-  const deleteTaskMutation = useDeleteTaskMutation();
+  const { revalidate } = useRevalidator();
+
+  const unDoneTaskMutation = useMutation(
+    trpcClient.action.unDoneTask.mutationOptions({
+      onSuccess() {
+        toast.success("unDone task successful");
+        revalidate();
+      },
+    }),
+  );
+
+  const doneTaskMutation = useMutation(
+    trpcClient.action.doneTask.mutationOptions({
+      onSuccess() {
+        toast.success("done task successful");
+        revalidate();
+      },
+    }),
+  );
+
+  const deleteTaskMutation = useMutation(
+    trpcClient.action.deleteTask.mutationOptions({
+      onSuccess() {
+        toast.success("delete task successful");
+        revalidate();
+      },
+    }),
+  );
 
   if (!myUserInfo) {
     return (

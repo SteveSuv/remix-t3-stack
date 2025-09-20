@@ -85,5 +85,6 @@ pnpm run deploy
 
 # notice
 
+- suggest node version greater than 22
 - remix v3 has been migrated to [react-router v7](https://remix.run/blog/react-router-v7)
 - a more complex project using `remix-t3-stack` is here: [remix-words-funny](https://github.com/SteveSuv/remix-words-funny)

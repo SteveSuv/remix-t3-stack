@@ -1,8 +1,8 @@
 import { Moon, Sun } from "lucide-react";
-import { LuIcon } from "./LuIcon";
-import { useAppTheme } from "~/hooks/useAppTheme";
 import { ComponentProps } from "react";
 import { clsx } from "~/common/clsx";
+import { useAppTheme } from "~/hooks/useAppTheme";
+import { LuIcon } from "./LuIcon";
 
 export const ThemeButton = (props: ComponentProps<"button">) => {
   const { isDarkMode, toggleTheme } = useAppTheme();

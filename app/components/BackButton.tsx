@@ -1,8 +1,8 @@
 import { ChevronLeft } from "lucide-react";
-import { LuIcon } from "./LuIcon";
+import { ComponentProps } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { clsx } from "~/common/clsx";
-import { ComponentProps } from "react";
+import { LuIcon } from "./LuIcon";
 
 export const BackButton = (props: ComponentProps<"button">) => {
   const nav = useNavigate();

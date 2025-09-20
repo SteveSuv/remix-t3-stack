@@ -1,12 +1,16 @@
-import { useMyUserInfo } from "~/hooks/useMyUserInfo";
-import { Controller, useZodForm } from "~/hooks/useZodForm";
-import { clsx } from "~/common/clsx";
-import { Title } from "~/components/Title";
-import { LuIcon } from "~/components/LuIcon";
+import { useMutation } from "@tanstack/react-query";
 import { LogIn } from "lucide-react";
-import { BackButton } from "~/components/BackButton";
+import { Controller } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useRevalidator } from "react-router";
+import { clsx } from "~/common/clsx";
 import { loginFormSchema } from "~/common/formSchema";
-import { useloginMutation } from "~/hooks/request/mutation/useLoginMutation";
+import { trpcClient } from "~/common/trpc";
+import { BackButton } from "~/components/BackButton";
+import { LuIcon } from "~/components/LuIcon";
+import { Title } from "~/components/Title";
+import { useMyUserInfo } from "~/hooks/useMyUserInfo";
+import { useZodForm } from "~/hooks/useZodForm";
 import { Route } from "./+types/login";
 
 export const meta: Route.MetaFunction = () => {
@@ -14,8 +18,16 @@ export const meta: Route.MetaFunction = () => {
 };
 
 export default function PageLogin() {
+  const { revalidate } = useRevalidator();
   const { myUserInfo } = useMyUserInfo();
-  const loginMutation = useloginMutation();
+  const loginMutation = useMutation(
+    trpcClient.action.login.mutationOptions({
+      onSuccess() {
+        toast.success("login successful");
+        revalidate();
+      },
+    }),
+  );
   const { form } = useZodForm(loginFormSchema);
 
   if (myUserInfo) {

@@ -1,14 +1,24 @@
-import { href, Link } from "react-router";
-import { useMyUserInfo } from "~/hooks/useMyUserInfo";
+import { useMutation } from "@tanstack/react-query";
 import { Home, LogIn, LogOut, User } from "lucide-react";
-import { LuIcon } from "./LuIcon";
+import toast from "react-hot-toast";
+import { href, Link, useRevalidator } from "react-router";
+import { trpcClient } from "~/common/trpc";
+import { useMyUserInfo } from "~/hooks/useMyUserInfo";
 import { BackButton } from "./BackButton";
+import { LuIcon } from "./LuIcon";
 import { ThemeButton } from "./ThemeButton";
-import { useLogoutMutation } from "~/hooks/request/mutation/useLogoutMutation";
 
 export const Header = () => {
+  const { revalidate } = useRevalidator();
   const { myUserInfo } = useMyUserInfo();
-  const logoutMutation = useLogoutMutation();
+  const logoutMutation = useMutation(
+    trpcClient.action.logout.mutationOptions({
+      onSuccess() {
+        toast.success("logout successful");
+        revalidate();
+      },
+    }),
+  );
 
   return (
     <div className="fixed top-0 left-0 flex w-screen items-center justify-between p-6">

@@ -1,6 +1,6 @@
+import { User } from "lucide-react";
 import { href, Link } from "react-router";
 import { LuIcon } from "./LuIcon";
-import { User } from "lucide-react";
 
 export const RegisterButton = () => {
   return (

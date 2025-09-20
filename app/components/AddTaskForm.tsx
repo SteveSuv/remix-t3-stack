@@ -1,14 +1,25 @@
+import { useMutation } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { Controller } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useRevalidator } from "react-router";
 import { clsx } from "~/common/clsx";
 import { addTaskFormSchema } from "~/common/formSchema";
-import { useAddTaskMutation } from "~/hooks/request/mutation/useAddTaskMutation";
+import { trpcClient } from "~/common/trpc";
 import { useZodForm } from "~/hooks/useZodForm";
 import { LuIcon } from "./LuIcon";
 
 export const AddTaskForm = () => {
+  const { revalidate } = useRevalidator();
   const { form } = useZodForm(addTaskFormSchema);
-  const addTaskMutation = useAddTaskMutation();
+  const addTaskMutation = useMutation(
+    trpcClient.action.addTask.mutationOptions({
+      onSuccess() {
+        toast.success("add task successful");
+        revalidate();
+      },
+    }),
+  );
 
   return (
     <form

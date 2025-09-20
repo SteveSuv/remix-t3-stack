@@ -1,7 +1,7 @@
-import { JWT_KEY } from "~/common/constants";
 import jwt from "jsonwebtoken";
-import { db } from "./db";
-import { Cookies } from "./cookies";
+import { Cookies } from "~/.server/common/cookies";
+import { db } from "~/.server/db";
+import { JWT_KEY } from "~/common/constants";
 
 export type IMyUserInfo = {
   id: string;

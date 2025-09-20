@@ -1,10 +1,10 @@
-import jwt from "jsonwebtoken";
 import { TRPCError } from "@trpc/server";
+import jwt from "jsonwebtoken";
+import { Cookies } from "~/.server/common/cookies";
+import { encrypt } from "~/.server/common/crypto";
+import { p } from "~/.server/common/trpc";
 import { db } from "~/.server/db";
-import { p } from "~/.server/trpc";
-import { Cookies } from "~/.server/cookies";
 import { COOKIE_MAX_AGE, JWT_KEY } from "~/common/constants";
-import { encrypt } from "~/.server/crypto";
 import { loginFormSchema } from "~/common/formSchema";
 
 export const login = p.unAuth
